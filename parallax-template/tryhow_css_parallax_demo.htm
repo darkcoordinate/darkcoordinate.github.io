@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=windows-1252">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+<style>
+body, html {
+  height: 100%;
+  margin: 0;
+  font: 400 15px/1.8 "Lato", sans-serif;
+  color: #777;
+  font-family: "PlayfairDisplay";
+}
+
+.bgimg-1, .bgimg-2, .bgimg-3 {
+  position: relative;
+  opacity: 1.0;
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100%;
+
+}
+.bgimg-1 {
+  background-image: url("pic1.jpg");
+  background-attachment: scroll;
+  background-position: top;
+
+  height: 60%;
+  overflow: hidden;
+}
+
+.bgimg-2 {
+  background-image: url("pic2.jpg");
+  background-color: #00ffbf;
+  background-blend-mode: multiply;
+  text-align: center;
+  min-height: 600px;
+}
+
+.bgimg-3 {
+  background-image: url("pic4.jpg");
+  background-color: #777;
+  background-blend-mode: multiply;
+  min-height: 670px;
+}
+
+.caption {
+  position: absolute;
+  left: 0;
+  top: 20%;
+  width: 100%;
+  text-align: center;
+  color: #fff;
+}
+
+.caption span.border {
+  background-color: #111;
+  color: #fff;
+  padding: 18px;
+  font-size: 25px;
+  letter-spacing: 10px;
+}
+
+h3 {
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  font: 20px "Lato", sans-serif;
+  color: #111;
+}
+
+#nav_bar{
+  border-radius: 0;
+  height:140px;
+  margin-bottom: 0px;
+ 
+}
+.abd{
+  color: black;
+}
+/*Business Card Css */
+.business-card {
+  border: 0px solid #cccccc;
+  background:transparent;
+  padding: 10px;
+  border-radius: 4px;
+  margin-bottom: 10px;
+}
+.profile-img {
+  height: 80px;
+  width:80px;
+  background:transparent;
+  object-fit: cover;
+}
+
+.job {
+  color: #ffffff;
+  font-size: 17px;
+}
+.mail {
+  font-size: 16px;
+ }
+
+.form-control {
+  border-radius: 0;
+}
+
+
+.media-body{
+  text-align: left;
+  padding-left: 20px;
+  color: #fff;
+}
+
+/* Turn off parallax scrolling for tablets and phones */
+@media only screen and (max-device-width: 1024px) {
+    .bgimg-1, .bgimg-2, .bgimg-3 {
+        background-attachment: scroll;
+    }
+}
+</style></head>
+<body onload="alignfn()">
+  <nav class="navbar navbar-default" id="nav_bar" >
+  <div class="container-fluid" id="navi">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
+      </button>
+      <a class="navbar-brand" style="font-size:34px;   color: black ;margin-left:20% " href="#">UNGRAMMARY</a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav" style="font-size:16px; margin-left:30%; color: black ">
+        <li class="active" ><a href="#">HOME</a></li>
+        <li><a href="#" class="abd" >STORIES</a></li>
+        <li><a href="#" class="abd">REVIEWS</a></li>
+        <li><a href="#" class="abd">HIRE US</a></li>
+        <li><a href="#" class="abd">BLOG</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<div class="bgimg-1">
+  <div style="text-align: left; top:40%; position: absolute; color: white; left: 15%">
+    <span style="font-size: 34px">STORY BEYOND LINGUISTIC</span><br> 
+    <span style="font-size: 24px">DOCUMENTRY. FILMS. PHOTOGRAPHY</span>
+  </div>
+</div>
+
+<div style="color: #000;background-color:white;text-align:center;padding:50px 20%;text-align: justify;">
+  <span style="font-size: 34px">UNGRAMMARY IS AN ART OF STORYTELLING<br> WHICH RELIES ON POWERFUL VISUAL
+  </span>
+  <ul style="font-size: 11px" >
+    <li type="1" >) FINE ART PHOTOGRAPHY WITH BLEND OF POETRY</li>
+    <li type="1">) COMMERCIAL & TRAVEL FILMS</li>
+    <li type="1">) ARTISTIC DOCUMENTATION</li>
+  </ul>
+  </p>
+</div>
+
+<div class="bgimg-2">
+  <div class="container">
+    <div class="row">
+      <font size ="34px" color="#fff">TEAM</font>
+    </div>
+	<div class="row">
+        <div class="col-sm-6">
+            <div class="business-card">
+                <div class="media">
+                    <div class="media-left">
+                        <img class="media-object img-circle profile-img" src="pic5.jpg">
+                    </div>
+                    <div class="media-body">
+                        <h2 class="media-heading">SWATI VERMA</h2>
+                        <div class="job">CEO</div>
+                        <div class="mail"><a href="mailto:daniel@bla.ch">daniel@bla.ch</a> </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="business-card">
+                <div class="media">
+                    <div class="media-left">
+                        <img class="media-object img-circle profile-img" src="pic6.jpg">
+                    </div>
+                    <div class="media-body">
+                        <h2 class="media-heading">RAKHI CHAUHAN</h2>
+                        <div class="job">Business Development</div>
+                        <div class="mail"><a href="mailto:samuel@bla.ch">samuel@bla.ch</a> </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+	</div>
+  <div class="row">
+        <div class="col-sm-6">
+            <div class="business-card">
+                <div class="media">
+                    <div class="media-left">
+                        <img class="media-object img-circle profile-img" src="pp.jpg">
+                    </div>
+                    <div class="media-body">
+                        <h2 class="media-heading">RAHUL KC</h2>
+                        <div class="job">CEO</div>
+                        <div class="mail"><a href="mailto:daniel@bla.ch">daniel@bla.ch</a> </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="business-card">
+                <div class="media">
+                    <div class="media-left">
+                        <img class="media-object img-circle profile-img" src="pic6.jpg">
+                    </div>
+                    <div class="media-body">
+                        <h2 class="media-heading">THE ONE WHO LEFT</h2>
+                        <div class="job">Phookna</div>
+                        <div class="mail"><a href="mailto:samuel@bla.ch">samuel@bla.ch</a> </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+	</div>
+  <div class="row">
+        <div class="col-sm-6">
+            <div class="business-card">
+                <div class="media">
+                    <div class="media-left">
+                        <img class="media-object img-circle profile-img" src="pic5.jpg">
+                    </div>
+                    <div class="media-body">
+                        <h2 class="media-heading">THE DRUNK</h2>
+                        <div class="job">WASTED</div>
+                        <div class="mail"><a href="mailto:daniel@bla.ch">daniel@bla.ch</a> </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="business-card">
+                <div class="media">
+                    <div class="media-left">
+                        <img class="media-object img-circle profile-img" src="pic6.jpg">
+                    </div>
+                    <div class="media-body">
+                        <h2 class="media-heading">THE NERD</h2>
+                        <div class="job">We don't understand him</div>
+                        <div class="mail"><a href="mailto:samuel@bla.ch">samuel@bla.ch</a> </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+	</div>
+</div>
+
+<div style="position:relative; height: 80%">
+  <div style="color:#000;background-color:#fff;text-align:center;padding:50px 20%;text-align: justify;">
+    <p>We are a bunch of passionate photographer & cinematogrphers led by HarsheenJammu, an IIM graduate With
+      offices in New Delhi Chandigarh & Ludhiyana we are very location agnostic when it comes to capturing event.
+      For the days we are with you  we will be the constant of the equation & the rest will be variable
+      We request you to send us a mail 
+    </p>
+    <p>
+      We are a bunch of passionate photographer & cinematogrphers led by HarsheenJammu, an IIM graduate With
+      offices in New Delhi Chandigarh & Ludhiyana we are very location agnostic when it comes to capturing event.
+      For the days we are with you  we will be the constant of the equation & the rest will be variable
+      We request you to send us a mail 
+    </p>
+    </p>
+  </div>
+</div>
+</div>
+
+<div class="bgimg-3">
+  <div class="caption">
+    <div class="container">
+<div class="row" style="min-height: 500px;padding-left: 15%">
+		
+		<div class="col-md-6">
+				<div class="row">
+					<div class="col-md-12">
+            <span class="glyphicon glyphicon-envelope pull-left"  > ungrammary.info@gmail.com</span><br>
+            <span class="glyphicon glyphicon-earphone pull-left"> +<b>919997652985</b></span><br>
+            <span class="pull-left" style="font-size: 26px">WE CANT WAIT  TO </span> <br><br> 
+            <span class="pull-left" style="font-size: 36px">HEAR FROM YOU</span>
+					</div>
+				</div>
+			<form role="form" id="contact-form" class="contact-form" action="">
+				<div class="row">
+					<div class="col-md-6">
+						<div class="form-group">
+							<input type="text" class="form-control" name="Name"
+								autocomplete="off" id="Name" placeholder="Name">
+						</div>
+					</div>
+					<div class="col-md-6">
+						<div class="form-group">
+							<input type="email" class="form-control" name="email"
+								autocomplete="off" id="email" placeholder="E-mail">
+						</div>
+					</div>
+				</div>
+        <div class="row">
+					<div class="col-md-6">
+						<div class="form-group">
+							<input type="text" class="form-control" name="Name"
+								autocomplete="off" id="Name" placeholder="Name">
+						</div>
+					</div>
+					<div class="col-md-6">
+						<div class="form-group">
+							<input type="email" class="form-control" name="email"
+								autocomplete="off" id="email" placeholder="E-mail">
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-12">
+						<div class="form-group">
+							<textarea class="form-control textarea" rows="3" name="Message"
+								id="Message" placeholder="Message" cols=""></textarea>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-12">
+            <span class="pull-left" style="font-size: 16px">SUBMIT FORM </span> <span id="EmailSent" class="glyphicon glyphicon-chevron-right pull-left" style="color:white;"></span>
+					</div>
+				</div>
+				
+			</form>
+		</div>
+	</div>
+</div>
+</div>
+</div>
+
+<div style=" height: 30px; position: relative">
+  <div style="height:30px; color:#ffffff;background-color:#000000;text-align:center;padding:0px 80px;text-align: justify; font-size: 14px">
+    2016 | INDIAN WEDDING PHOTOGRAPHER | CANDID WEDDING PHOTOGRAPHER | BEST WEDDING PHOTOGRAPHER | DESTINATION WEDDING PHOTOGRAPHY | ART PHOTOGRAPHER
+  </div>
+</div>
+
+<script >
+function alignfn(){
+  var c = document.getElementById("nav_bar").clientHeight;
+  var d = document.getElementById("navi").clientHeight;
+  $("#navi").css("transform","translateY("+((c/2)-(d/2)).toString() + "px)");
+  console.log(d);
+}
+</script>
+
+</body></html>
