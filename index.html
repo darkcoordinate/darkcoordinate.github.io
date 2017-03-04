@@ -87,10 +87,26 @@ ul.topnav2 li.right {float: right;}
     vertical-align: middle;
 }
 
+.txt.one{
+    top: -5%;
+    left: 30%
+}
+
+.txt.two{
+    left:40%;
+}
+
+.txt.three{
+    top: -5%;
+    left:32%;
+}
+
+
 .txt{
     position: absolute;
     color: #ed1b53;
-    font-size: 80px;
+    font-size: 40px;
+    align-self: center;
 }
 
 
@@ -215,9 +231,9 @@ source and during the propagation to the observer.</p>
 
 <div class="second" id = "a2">
     <div class="round">
-        <div class="rb"><span class="txt">Social Media <br> Marketing</span></div>
-        <div class="rb main"><span class="txt"Product <br> Design</span></div>
-        <div class="rb"><span class="txt">Brand <br> Storytelling</span></div>
+        <div class="rb one"><span class="txt one">Social Media <br> Marketing</span></div>
+        <div class="rb main"><span class="txt two"Product <br> Design</span></div>
+        <div class="rb three"><span class="txt three">Brand <br> Storytelling</span></div>
     </div>
     <div class="bottxt">
      <div  class="txt2">
@@ -252,7 +268,7 @@ source and during the propagation to the observer.</p>
     <div class="frm">
         Fill the Details and we will contact you with the prospect
         <br>
-       <form class="fm" action="/action_page.php">
+       <form class="fm" action="http://letsinnovate.in/index.php">
             <div class="fm_tag">Name</div><br>
             <input type="text" class="ibox" value="Mickey"/>
             <br>
@@ -266,7 +282,7 @@ source and during the propagation to the observer.</p>
             <div class="fm_tag">Budget</div><br>
             <input type="text" class="ibox" name="Select " value="Mouse"/>
             <br><br>
-            <input type="submit"  class="botn" value="Submit"/>
+            <input type="submit" class="botn" value="Submit"/>
         </form>
     </div>
     <div class="myinfo" id="info"> 
@@ -288,6 +304,10 @@ function fnc(){
     } else {
         navbar.className = "topnav" + " topnav2";
     }
+}
+
+function submit(){
+    console.log("hello from the other");
 }
 
 function load(){
