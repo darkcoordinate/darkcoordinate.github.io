@@ -236,7 +236,7 @@ function loading(){
     req.open("GET","http://letsinnovate.in/page.txt" , true);
     req.setRequestHeader('Access-Control-Allow-Headers', '*');
     req.setRequestHeader('Content-type', 'txt');
-    req.setRequestHeader('Access-Control-Allow-Origin', '*');
+    req.setRequestHeader('Access-Control-Allow-Origin', 'letsinnovate.in');
     req.onreadystatechange = function () {
         if (req.readyState == 4 && req.status == 200) {
             // content is loaded...hide the gif and display the content...
