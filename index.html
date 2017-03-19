@@ -241,8 +241,8 @@ function loading(){
         if (req.readyState == 4 && req.status == 200) {
             // content is loaded...hide the gif and display the content...
             if (req.responseText) {
-                document.getElementById('content').innerHTML += req.responseText;
-                document.getElementById('loader').visible = false;
+                document.getElementById('content').innerHTML = req.responseText;
+                //document.getElementById('loader').visible = false;
                 load();
             }
         }
