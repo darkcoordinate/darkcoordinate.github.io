@@ -233,10 +233,10 @@ function loading(){
     document.getElementById('loader').visible = true;
     // request your data...
     var req = new XMLHttpRequest();
-    req.open("GET","http://letsinnovate.in/page.txt" , true);
+    req.open("GET","http://theundesigners.com//page.txt" , true);
     req.setRequestHeader('Access-Control-Allow-Headers', '*');
     req.setRequestHeader('Content-type', 'txt');
-    req.setRequestHeader('Access-Control-Allow-Origin', 'letsinnovate.in');
+    req.setRequestHeader('Access-Control-Allow-Origin', '*');
     req.onreadystatechange = function () {
         if (req.readyState == 4 && req.status == 200) {
             // content is loaded...hide the gif and display the content...

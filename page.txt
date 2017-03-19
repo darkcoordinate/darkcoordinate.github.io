@@ -1,0 +1,98 @@
+<div class="first"  id="a1">
+    <svg width="400" height="170">
+        <rect x="110" y="102" rx="2" ry="2" width="30" height="30" style="fill:white;stroke:white;stroke-width:0;opacity:1.0" />
+        <rect x="90" y="135" rx="2" ry="2" width="36" height="30" style="fill:#f798b1;stroke:white;stroke-width:0;opacity:1.0" />
+        <rect x="130" y="135" rx="2" ry="2" width="38" height="30" style="fill:white;stroke:white;stroke-width:0;opacity:1.0" />
+    </svg>
+    <br><div class="brand" id="brnd">THE UNDESIGNERS</div>
+    <div class="tag_line" id="tag">Tag line<br> Chalo Chalo Karo Radio Suru<br> Sukarwaar Nikal Jaaena guru</div>
+</div>
+<div>
+    <ul class="topnav" id="nav">
+        <li><a href="#a1">HOME</a></li>
+        <li class="right"><a href="#a5">OUR STORY</a></li>
+        <li class="right"><a href="#a2">SERVICES</a></li>
+        <li class="right"><a href="#a4">HIRE US</a></li>
+    </ul>
+</div>
+
+<div class="fifth" id = "a5">
+    <div class="a5-1">
+        <font size="20px">T</font>he curvature and twisting of spacetime rotate the angle of polarization and imprint orbital angular momentum to photons emitted by the accretion disk near rotating black holes. Considering polarization and orbital angular momentum as two degrees of freedom of single-photons that can encode quantum information, we emphasize that the particular shape of spacetime around rotating black holes implements quantum gates and simple quantum circuits. Consequently, we demonstrate the implementation of some elementary quantum gates, like Hadamard or C-NOT, and simple quantum circuits, like Bell states, with photons in the presence of spinning black holes. Detection and measurement of quantum information encoded in photons emitted in the accretion disk around rotating black holes may be performed by actual quantum information technology. 
+        <p>Classical work related to determine the polarization
+of X-ray photons emitted near RBH considers the New-
+tonian limit, which consists, for symmetry reasons, on
+horizontal polarization, parallel to the disk and vertical
+polarization, perpendicular to the disk [1]. However, the
+polarization of photons is determined by local processes
+in the source and by general relativistic effects within the
+source and during the propagation to the observer.</p>
+    </div>
+    <div class="a5-2">
+        <img id="p1" src="j1.png" alt="">
+
+    </div>
+</div>
+
+<div class="second" id = "a2">
+    <div class="round">
+        <div class="rb one"><span class="txt one">Social Media <br> Marketing</span></div>
+        <div class="rb main"><span class="txt two"Product <br> Design</span></div>
+        <div class="rb three"><span class="txt three">Brand <br> Storytelling</span></div>
+    </div>
+    <div class="bottxt">
+     <div  class="txt2">
+        Social Media Strategies <br>
+        SEO SEM SMM ad ASO <br>
+        Social Media Creatives
+        </div>
+        <div class="txt2">
+        User Flow (web/App)<br>
+        User INterface Design<br>
+        User Journey Map <br>
+        Communication Design 
+        </div>
+         <div class="txt2">
+        Brand Concept and story<br>
+        Visual Identity<br>
+        Graphic Design<br>
+        Collaterals
+        </div>
+
+    </div>   
+</div>
+ 
+
+<div class="third" id = "a3">
+    <div class="why">Why us?</div><br>
+    <div class="why2">
+        <h1>W</h1>e validate out Creative <h1 style="color:#ed1b53; ">X</h1> factor through <br> Analytics and Numbers</div>
+</div>
+
+<div class="forth" id = "a4">
+    <div class="frm">
+        Fill the Details and we will contact you with the prospect
+        <br>
+       <form class="fm" action="http://letsinnovate.in/index.php" method="post">
+            <div class="fm_tag">Name</div><br>
+            <input type="text" class="ibox" name="Name" value="Mickey"/>
+            <br>
+            <div class="fm_tag">Email</div><br>
+            <input type="text" class="ibox" name="email" value="Anurag@gmail.com"/>
+            <br>
+            <div class="fm_tag">Contact</div>
+            <br>
+            <input type="text" class="ibox" name="phone" value="+91 7376353896"/>
+            <br>
+            <div class="fm_tag">Budget</div><br>
+            <input type="text" class="ibox" name="Budget" value="Mouse"/>
+            <br><br>
+            <input type="submit" class="botn" value="Submit"/>
+        </form>
+    </div>
+    <div class="myinfo" id="info"> 
+        For Business Contact:<br> 
+        kc@ungrammary.com<br>
+        +91 9997652985 
+    </div> 
+</div>
