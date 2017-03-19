@@ -233,7 +233,7 @@ function loading(){
     document.getElementById('loader').visible = true;
     // request your data...
     var req = new XMLHttpRequest();
-    req.open("GET","http://letsinnovate.in/page.php" , true);
+    req.open("GET","http://letsinnovate.in/page.txt" , true);
     req.setRequestHeader('Access-Control-Allow-Origin' ,"http://letsinnovate.in/page.txt" )
     req.onreadystatechange = function () {
         if (req.readyState == 4 && req.status == 200) {
