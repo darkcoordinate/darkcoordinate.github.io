@@ -1,9 +1,74 @@
 <html>
     <head><title>Ungramery</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <style>
-    
+    .navbar{
+      margin-bottom: 0px;
+    }
+    .mid{
+      background-color: #66c6b3;
+      border-style: solid;
+      border-width: 5px;
+      border-color:white;
+    }
+    .vcenter {
+    display: inline-block;
+    vertical-align: middle;
+    float: none;
+}
+  .fi1{
+    background-color: #66c6b3;
+      border-style: solid;
+      /*border-width: 50px 0px 0px 0px;*/
+      border-color:#66c6b3;
+      color: white;
+      font-size: 25px;
+  }
+  .fi2{
+    background-color: #66c6b3;
+      border-style: solid;
+      /*border-width: 50px 0px 0px 0px;*/
+      border-color:#66C6B3;
+      color: white;
+      font-size: 25px;
+  }
+  .des1{
+    color:black;
+    font-size:12px;
+  }
+  #row3{
+    margin:50px;
+  }
+  #rqpo{
+    background-color: #66c6b3;
+    font-size: 20px;
+    border-style: solid;
+    /*border-width: 0px 30px 0px 30px;*/
+     border-color: white ;
+     padding-top: 5px;
+  }
+
+  #rqpo1{
+    background-color: white;
+    font-size: 20px;
+    border-style: solid;
+    border-width: 0px 0px 0px 0px;
+     border-color: white ;
+     margin: 0px;
+     padding: 0px;
+  }
+
+  .aie{
+    background-color: #f96e83;
+    min-height: 40px;
+    border-style: solid;
+    border-color: white;
+    border-width: 10px 0px 10px 0px;
+  }
     </style>
-     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+     
       </head>
     <body>
         
@@ -14,5 +79,66 @@
     <li><a href="#bloco2"  style="color:white; margin:10px 30px ; font-size:20">CONTACT</a></li>
   </ul>
 </nav>
+<div class="row">
+  <img src="gram.png" alt="" width="444">
+</div>
+<div class="row">
+  <div class="col-md-3"></div>
+  <div class="col-md-3 mid vcenter" id="mid1"><span class="fi1 center-block text-center">DESIGN<br>           <p class="des1">UX RESEARCH & DESIGN THINGKING</p></span></div>
+  <div class="col-md-3 mid vcenter" id="mid2"><span class="fi1 center-block text-center">DIGITAL MARKETING<BR><p class="des1">ANALYTICS & CONTENT DRIVEN MARKETING</p></span></div>
+  <div class="col-md-3"></div>
+</div>
+<div class="row">
+  <div class="col-md-3"></div>
+  <div class="col-md-6 mid" id="mid3"><span class="fi2 center-block text-center">BRANDING & ADVERTISING<br>           <p class="des1">LET US TELL YOUR STORY</p></span></div>
+  <div class="col-md-3"></div>
+</div>
+<div class="row" id="row3">
+  <div class="col-md-4"></div>
+  <div class="col-md-4 center-block text-center" id="rqpo">Request Quote</div>
+  <div class="col-md-4"></div>
+</div>
+<div class="row" id="row4">
+  <div class="col-md-5 aie" style="border-width: 15px 20px 15px 0px;"> </div>
+  <div class="col-md-2 center-block text-center" id="rqpo1"> CALL US TO YOUR FEST </div>
+  <div class="col-md-5 aie" style="border-width: 15px 0px 15px 20px;"> </div>
+</div>
+<div class="row"></div>
+<script>
+  var k = $("#mid1").width();
+  $('#mid1').css({'height':k+'px'});
+   k = $("#mid2").width();
+  $('#mid2').css({'height':k+'px'});
+  k = $("#mid3").width();
+  $('#mid3').css({'height':(parseInt(k)/5).toString()+'px'});
+  k = $("#mid1").width();
+  var bk = document.getElementsByClassName("fi1");
+  console.log(bk.length);
+  for(i = 0; i < bk.length; i++){
+    bk[i].style.borderTopWidth = (parseInt(k)/3).toString() + "px";
+    bk[i].style.borderLeftWidth = "0px";
+    bk[i].style.borderRightWidth = "0px";
+    bk[i].style.borderBottomWidth = "0px";
+  }
+  k = $("#mid3").height();
+  var bk = document.getElementsByClassName("fi2");
+  console.log(bk.length);
+  for(i = 0; i < bk.length; i++){
+    bk[i].style.borderTopWidth = (parseInt(k)/3).toString() + "px";
+    bk[i].style.borderLeftWidth = "0px";
+    bk[i].style.borderRightWidth = "0px";
+    bk[i].style.borderBottomWidth = "0px";
+  }
+  k = $("#rqpo").width();
+  $('#rqpo').css({'height':(parseInt(k)/8).toString()+'px'});
+  $('#rqpo').css({'margin-top':(parseInt(k)/8).toString()+'px'});
+  var mk = document.getElementById("rqpo");
+  mk.style.borderLeftWidth = (parseInt(k)/5).toString()+'px';
+  mk.style.borderRightWidth = (parseInt(k)/5).toString()+'px';
+  mk.style.borderTopWidth = "0px";
+  mk.style.borderBottomWidth = "0px";
+  console.log(parseInt(k)/5);
+  console.log(k);
+</script>
 </body>
 </html>
