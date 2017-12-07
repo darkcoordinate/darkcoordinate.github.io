@@ -23,7 +23,7 @@ function main() {
     uniform mat4 uProjectionMatrix;
 
     void main() {
-      gl_Position = 2.0*uProjectionMatrix * uModelViewMatrix * aVertexPosition;
+      gl_Position = 0.5*uProjectionMatrix * uModelViewMatrix * aVertexPosition;
     }
   `;
 
