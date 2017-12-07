@@ -23,7 +23,7 @@ function main() {
     uniform mat4 uProjectionMatrix;
 
     void main() {
-      gl_Position = 0.5*uProjectionMatrix * uModelViewMatrix * aVertexPosition;
+      gl_Position = uProjectionMatrix * uModelViewMatrix * aVertexPosition;
     }
   `;
 
@@ -81,10 +81,10 @@ function initBuffers(gl) {
   // Now create an array of positions for the square.
 
   const positions = [
-     1.0,  1.0,
-    -1.0,  1.0,
-     1.0, -1.0,
-    -1.0, -1.0,
+     2.0,  2.0,
+    -2.0,  2.0,
+     2.0, -2.0,
+    -2.0, -2.0,
   ];
 
   // Now pass the list of positions into WebGL to build the
