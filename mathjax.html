@@ -1,45 +1,18 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>MathJax MathML Test Page</title>
-<script type="text/javascript" async
-  src="https://example.com/mathjax/MathJax.js?config=MML_CHTML">
-</script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>MathJax example</title>
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async
+          src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+  </script>
 </head>
 <body>
-
 <p>
-When
-<math xmlns="http://www.w3.org/1998/Math/MathML">
-  <mi>a</mi><mo>&#x2260;</mo><mn>0</mn>
-</math>,
-there are two solutions to
-<math xmlns="http://www.w3.org/1998/Math/MathML">
-  <mi>a</mi><msup><mi>x</mi><mn>2</mn></msup>
-  <mo>+</mo> <mi>b</mi><mi>x</mi>
-  <mo>+</mo> <mi>c</mi> <mo>=</mo> <mn>0</mn>
-</math>
-and they are
-<math xmlns="http://www.w3.org/1998/Math/MathML" display="block">
-  <mi>x</mi> <mo>=</mo>
-  <mrow>
-    <mfrac>
-      <mrow>
-        <mo>&#x2212;</mo>
-        <mi>b</mi>
-        <mo>&#x00B1;</mo>
-        <msqrt>
-          <msup><mi>b</mi><mn>2</mn></msup>
-          <mo>&#x2212;</mo>
-          <mn>4</mn><mi>a</mi><mi>c</mi>
-        </msqrt>
-      </mrow>
-      <mrow> <mn>2</mn><mi>a</mi> </mrow>
-    </mfrac>
-  </mrow>
-  <mtext>.</mtext>
-</math>
+  When \(a \ne 0\), there are two solutions to \(ax^2 + bx + c = 0\) and they are
+  \[x = {-b \pm \sqrt{b^2-4ac} \over 2a}.\]
 </p>
-
 </body>
 </html>
