@@ -8,11 +8,20 @@
   <script id="MathJax-script" async
           src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
   </script>
+  <script>
+    var term = {variable="x",degree = "2", sign = "+"};
+    function expression(){
+      document.getElementById("f1").innerHTML= "\("term.variable+"^"+term.degree+"\)";
+    }
+  </script>
 </head>
 <body>
 <p>
   When \(a \ne 0\), there are two solutions to \(ax^2 + bx + c = 0\) and they are
   \[x = {-b \pm \sqrt{b^2-4ac} \over 2a}.\]
+</p>
+<button onclick="expression()">function </button>
+<p id="f1">
 </p>
 </body>
 </html>
