@@ -1,48 +1,96 @@
+<!DOCTYPE html>
 <html>
+
 <head>
-<title>MathJax Dynamic Math Test Page</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>MathJax example</title>
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-svg.js">
+  </script>
+  <script>
+    var sign = ["+", "-", "=", "*", "/", "(", ")", "[", "]", "{", "}", "^"]
 
-<script src="/MathJax/MathJax.js">
-  MathJax.Hub.Config({
-    extensions: ["tex2jax.js"],
-    jax: ["input/TeX","output/HTML-CSS"],
-    tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]}
-  });
-</script>
-
-</head>
-<body>
-
-<script>
-  //
-  //  Use a closure to hide the local variables from the
-  //  global namespace
-  //
-  (function () {
-    var QUEUE = MathJax.Hub.queue;  // shorthand for the queue
-    var math = null;                // the element jax for the math output.
-
-    //
-    //  Get the element jax when MathJax has produced it.
-    //
-    QUEUE.Push(function () {
-      math = MathJax.Hub.getAllJax("MathOutput")[0];
-    });
-
-    //
-    //  The onchange event handler that typesets the
-    //  math entered by the user
-    //
-    window.UpdateMath = function (TeX) {
-      QUEUE.Push(["Text",math,"\\displaystyle{"+TeX+"}"]);
+    var term = function () {
+      this.cofficient = 2;
+      this.variable = ["x"];
+      this.degree = 2;
+      this.sign = "+";
+      this.child;
+      this.parent;
     }
-  })();
-</script>
+    function term_load() {
+      console.log("hello");
+      document.getElementById("fx").innerHTML = MathJax.tex2chtml("\\(x\\)", { em: 12, ex: 6, display: false }).outerHTML;
+    }
+    var equation = "";
+    var MathCallStack = [];
+    var MathCallStack_L1 = [];
+    function availableInMathCallStack(ob) {
+      var state = false;
+      var indx = 0;
+      for (var i = 0; i < MathCallStack.length; i++) {
+        if (MathCallStack[i].type == ob.type) {
+          if (MathCallStack[i].char == ob.char) {
+            state = true;
+          }
+        }
+      }
+      return [state, indx];
+    }
 
-Type some TeX code:
-<input id="MathInput" size="50" onchange="UpdateMath(this.value)" />
-<p>
+    function buildEquation() {
+      dmy_equation = "";
+      for (var i = 0; i < MathCallStack.length; i++) {
+        console.log(i);
+        dmy_equation += MathCallStack[i].char + "^{" + MathCallStack[i].exp + "}";
+      }
+      return dmy_equation;
+    }
+    function add_term() {
+      trm = { type: 1, char: "x", exp: 1 };
+      availibility = availableInMathCallStack(trm);
+      if (availibility[0]) {
+        MathCallStack[availibility[1]].exp += 1;
+      }
+      else {
+        MathCallStack.push(trm);
+      }
+      equation += buildEquation();
+      expression();
+    }
 
-<div id="MathOutput">
-You typed: ${}$
-</div>
+    function add_term_x2() {
+      trm = { type: 1, char: "x", exp: 2 };
+      availibility = availableInMathCallStack(trm);
+      if (availibility[0]) {
+        MathCallStack[availibility[1]].exp += 2;
+      }
+      else {
+        MathCallStack.push(trm);
+      }
+      equation += buildEquation();
+      expression();
+    }
+
+    function expression() {
+      console.log(equation);
+      document.getElementById("f1").innerHTML = MathJax.tex2svg(equation, { em: 12, ex: 6, display: false }).outerHTML;
+    }
+  </script>
+</head>
+
+<body>
+  <p>
+    When \(a \ne 0\), there are two solutions to \(ax^{3} + bx + c = 0\) and they are
+    \[x = {-b \pm \sqrt{b^2-4ac} \over 2a}.\]
+  </p>
+  <input type="text" id="read" value="2x^2 + 2y^2" />
+  <button onclick="expression()">function </button>
+  <button onclick="add_term()" id="fx">\(x\)</button>
+  <button onclick="add_term_x2()" id="fx">\(x^2\)</button>
+  <p id="f1">
+  </p>
+</body>
+
+</html>

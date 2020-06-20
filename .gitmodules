@@ -1,3 +1,6 @@
 [submodule "asciimathml"]
 	path = asciimathml
 	url = https://github.com/asciimath/asciimathml.git
+[submodule "treant-js"]
+	path = treant-js
+	url = https://github.com/fperucic/treant-js.git
