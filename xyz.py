@@ -48,8 +48,8 @@ from bpy_extras.io_utils import ImportHelper
 print("hello")
 
 
-mat = {"C":"Material.003", "H":"Material.001"}
-size = {"C":0.3, "H":0.2}
+mat = {"C":"Material.003", "H":"Material.001", "B":"Material.004", "O":"Material.005"}
+size = {"C":0.3, "H":0.2,"B":0.3,"O":0.3}
 
 def load(s):
     return ase.io.read(s,index=':')
@@ -80,7 +80,7 @@ def create_inital_bond(l):
                 bond.append([i,j,val,v, loc])
     return bond
 
-def create_bond(m,bond):
+def create_bond(m,bond, l):
     bond2 = []
     for i in range(len(bond)):
         v = l[m].positions[bond[i][1]] - l[m].positions[bond[i][0]]
@@ -111,17 +111,28 @@ def draw_everything(s):
     bond_name = []
     for i in bond:
         bond_name.append(draw_bond(i))
-
+    print("printint bond name")
     print(bond_name)
 
+    keys = bpy.data.objects.keys()
+
+    atom_name =[]
+    bond_name = []
+    for i in keys:
+        if "Cy" in i:
+            bond_name.append(i)
+        if "Sp" in i:
+            atom_name.append(i)
     for i in range(len(l)):
+        print("frame")
+        print(i)
         for j in range(len(l[i].positions)):
             ob = bp.data.objects[atom_name[j]]
             ob.select_set(state=True)
             ob.location = l[i].positions[j]
             ob.keyframe_insert(data_path="location",frame=(i*2))
             ob.select_set(state=False)
-        bond2 = create_bond(int(i),bond)
+        bond2 = create_bond(int(i),bond, l)
         for j in range(len(bond_name)):
             theta= mt.acos(bond2[j][3][2]/bond2[j][2])
             #print([-bond[3][1]/bond[2],bond[3][0]/bond[2],0])
