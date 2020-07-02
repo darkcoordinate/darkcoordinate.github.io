@@ -17,6 +17,15 @@ function setup() {
 	maxD = dist(0, 0, 200, 200);
 }
 
+navigator.permissions.query({ name: 'geolocation' }).then(function (result) {
+	if (result.state === 'granted') {
+		showLocalNewsWithGeolocation();
+	} else if (result.state === 'prompt') {
+		showButtonToEnableLocalNews();
+	}
+	// Don't do anything if the permission was denied.
+});
+
 
 let gyroscope = new Gyroscope({ frequency: 60 });
 
