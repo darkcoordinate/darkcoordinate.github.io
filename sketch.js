@@ -12,10 +12,23 @@ let ma;
 let maxD;
 
 function setup() {
-  createCanvas(400, 400, WEBGL);
-  ma = atan(cos(QUARTER_PI));
-  maxD = dist(0, 0, 200, 200);
+	createCanvas(400, 400, WEBGL);
+	ma = atan(cos(QUARTER_PI));
+	maxD = dist(0, 0, 200, 200);
 }
+
+
+let gyroscope = new Gyroscope({ frequency: 60 });
+
+gyroscope.addEventListener('reading', e => {
+	document.getElementById("gx").innerHTML = gyroscope.x;
+	document.getElementById("gy").innerHTML = gyroscope.y;
+	document.getElementById("gz").innerHTML = gyroscope.z;
+	console.log("Angular velocity along the X-axis " + gyroscope.x);
+	console.log("Angular velocity along the Y-axis " + gyroscope.y);
+	console.log("Angular velocity along the Z-axis " + gyroscope.z);
+});
+gyroscope.start();
 
 function draw() {
 	background(255);
@@ -39,5 +52,5 @@ function draw() {
 		}
 	}
 
-  angle -= 0.1;
+	angle -= 0.1;
 }
