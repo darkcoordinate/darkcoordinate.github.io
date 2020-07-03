@@ -1,15 +1,50 @@
 <html>
+    <head><title>
+    Orientation
+</title>
 
-<head>
-  <script src="https://cdn.jsdelivr.net/npm/p5@1.0.0/lib/p5.js"></script>
-  <script src="sketch.js"></script>
 </head>
+    
+    <body>
+        hello world
+        <p id="fe">face </p>
+        <canvas id='test' height='2000' width='2000' >
+        </canvas>
+    </body>
+    <script>
+       canvas = document.getElementById('test');
+ 		canvas.addEventListener('touchstart', handleStart);
+		canvas.addEventListener('touchmove' , handleMove);
+		ctx = canvas.getContext('2d');
+				
 
-<body>
-  <p id="gx"></p>
-  <p id="gy"></p>
-  <p id="gz"></p>
-  <input type="range" id="volume" name="volume" min="0" max="11">
-</body>
 
+		function handleStart(e){
+            if(e.targetTouches[0].radiusX === 0){
+                e.preventDefault();
+                var x = e.targetTouches[0].pageX;
+                var y = e.targetTouches[0].pageY;
+                ctx.fillStyle = '#0000FF';
+                ctx.fillRect(x, y, 2, 2);
+                ctx.beginPath();
+                ctx.moveTo(x,y);
+            }
+		}
+				
+		function handleMove(e){
+            if(e.targetTouches[0].radiusX === 0){
+                e.preventDefault();
+                var x = e.targetTouches[0].pageX;
+                var y = e.targetTouches[0].pageY;
+                ctx.lineTo(x,y);
+                ctx.strokeStyle='#0000FF';
+                ctx.lineWidth=2;
+                ctx.stroke();
+            
+            }
+            else{
+                ctx.endPath();
+            }
+        }
+   </script>
 </html>
