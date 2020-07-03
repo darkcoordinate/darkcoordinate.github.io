@@ -55,7 +55,8 @@ function draw() {
 			let h = floor(map(sin(a), -1, 1, 100, 300));
 			translate(x - width / 2, 0, z - height / 2);
 			normalMaterial();
-			box(w, h, w);
+			//box(w, h, w);
+			sphere(0.0,0.0,0.0);
 			//rect(x - width / 2 + w / 2, 0, w - 2, h);
 			pop();
 		}
