@@ -9,6 +9,9 @@
   <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-svg.js">
   </script>
   <script>
+    setTimeout(function () {
+      location.reload();
+    }, 10000);
     var sign = ["+", "-", "=", "*", "/", "(", ")", "[", "]", "{", "}", "^"]
 
     var term = function () {
@@ -78,15 +81,101 @@
       document.getElementById("f1").innerHTML = MathJax.tex2svg(equation, { em: 12, ex: 6, display: false }).outerHTML;
     }
   </script>
+
+  <style>
+    body {
+      font-family: "Monaco";
+
+    }
+  </style>
 </head>
 
 <body>
   <p>
-    Giving the description of 
+    Exact electronic operator
     \[
-      \left | S_{0} \right \rangle = \prod _{n=1} ^{N} \prod _{\sigma=1} c^{\dagger}_{H,n,\sigma} \left | 0 \right \rangle
+    \hat{H}_{el} = \sum _{ij,\sigma}{ h_{ij}c^{\dagger}_{i,\sigma} c_{j,\sigma} } +
+    \frac{1}{2} \sum _{ijkl,\sigma {\sigma}'}
+    {
+    V_{ijkl}
+    c^{\dagger}_{i,\sigma}
+    c^{\dagger}_{j,{\sigma}'}
+    c_{k,{\sigma}'}
+    c_{l,\sigma}
+
+    }
+
     \]
 
+
+    \[
+    h_{ij} = \int d^{3}\mathbf{r}\phi_{i}^{*} \left ( \mathbf{r} \right )
+    \left [
+    -\frac{1}{2} \nabla ^{2} _{r} + V_{el - nuc} \left ( \mathbf{r}\right )
+    \right]\phi_{j} \left ( \mathbf{r} \right ) \equiv ( i | \hat{h} | j )
+    \]
+    This is the one electron integral
+    \[
+    V_{ijkl} = \int d^{3}\mathbf{r}_{1}
+    \int
+    d^{3}\mathbf{r}_{2}
+    \phi_{i}^{*} \left ( \mathbf{r}_{1} \right )
+    \phi_{j}^{*} \left ( \mathbf{r}_{2} \right )
+    \phi_{k} \left ( \mathbf{r}_{1} \right )
+    \phi_{l} \left ( \mathbf{r}_{2} \right )
+    \equiv ( ij | kl )
+    \]
+
+    Diagonal matix elements of the Hamiltonian operatot in the diabatic basis are given
+
+    \[
+    E[ S_{0} ] =
+    \sum_{i \epsilon S_{0} } 2 (i|\hat{h}|i) + \sum_{i,j \epsilon S_{0} } 2 (ij|\hat{h}|ij) - (ij|\hat{h}|ji)
+
+    \]
+
+    \[
+    E[ (S_{1})_{n} ] = E[ S_{0} ] + E_{g} + 2K_{H_{n}L_{n}} - J_{H_{n}L_{n}}
+
+    \]
+
+    \[
+    E[C_{m} A_{n} ] = E[ S_{0} ] + E_{g} + 2K_{L_{m}L_{n}} - J_{H_{m}L_{n}}
+
+    \]
+    \[
+    E[T_{m} T_{n} ] = E[ S_{0} ] + 2E_{g} + J_{H_{m}H_{n}} + J_{L_{m}L_{n}} - J_{L_{m}H_{m}}
+    -J_{L_{m}H_{n}} -J_{L_{n}H_{m}} - J_{L_{n}H_{n}}
+    \]
+    \[
+    +\left (\frac{1}{2} \right ) \left (
+    K_{H_{n}H_{n}} + K_{L_{m}L_{n}} + 3K_{L_{n}H_{m}} + K_{L_{m}H_{n}}
+
+    \right )
+    \]
+
+    \[
+    E_{g} = \varepsilon_{L_{m}} -\varepsilon_{H_{m}}
+    \]
+
+    Coulomb integral\[
+    J_{ij} = (ij|ij)
+    \]
+    Exchange integral
+    \[
+    K_{ij} = (ij|ji)
+    \]
+
+    Spatial orbitla matrix elements of the fock operator
+    \[
+    (i|\hat{F}|j) = (i|\hat{h}|j)  + \sum_{k  \epsilon  S_{0}} 2(ik|jk) - (ij|kk)
+    \]
+    Ground state is approximated by the equation.
+
+    \[
+    \left | S_{0} \right \rangle = \prod _{n=1} ^{N} \prod _{\sigma=1} c^{\dagger}_{H,n,\sigma} \left | 0 \right \rangle
+    \]
+    Here \( \left | 0 \right \rangle \) is the vacuum state of inactive core orbital
   </p>
   <input type="text" id="read" value="2x^2 + 2y^2" />
   <button onclick="expression()">function </button>
