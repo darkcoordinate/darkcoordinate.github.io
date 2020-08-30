@@ -57,23 +57,77 @@
 			<!-- </ul> -->
 			<!-- <hr class="d-sm-none"> -->
 			<!-- </div> -->
-			<div class="col-sm-8">
+			<div class="col-sm-10">
 				<h2>Quantum Chemistry</h2>
-				<h5>The Basic Idea</h5>
-				<p></p>
-				<p>
-					All the theory that is give after newtons laws of motion is to explain may body systems in some way or the other. Quantum theory is also one of the approach to do such things.
-					The prime reason for this theory to capture the concept of wave particle duality simultaneously. In a single mathematical equation. Its equations is comes from Hamiltonian mechanics.
-					Hamiltonian mechanics could thought of as a mathematical model that trys to explain the motion of some though interacting with each other but immiscible fluids.   
+				<h3>The Basic Idea</h3>
+				<p> All the theory that is give after newtons laws of motion is to explain may body systems in some way
+					or the other. Quantum theory is also one of the approach to do such things. The prime reason for
+					this theory to capture the concept of wave particle duality simultaneously. In a single mathematical
+					equation. Its equations is comes from Hamiltonian mechanics. Hamiltonian mechanics could thought of
+					as a mathematical model that trys to explain the motion of some though interacting with each other
+					but immiscible fluids. This model does this thing very picularly. It does so by equating the energy
+					descriptor of a quantity called wave function \(\Psi\) . Which is described as a quantity with no
+					physical significance but when you square it ( \(\Psi^{2}\) ) you will get the probability of
+					finding that particle in a given region. Although the quantity \(\Psi\) is not thought of as is
+					prior to its derivation. It is the solution of the differntial equation that came out so that its
+					explaination would be that. The differential equation is called Shordinger equation.
 				</p>
 				<br>
-				<!-- <h2>TITLE HEADING</h2> --> -->
+				<h3> Shordinger equation</h3>
+				<h5> Time-independent Schrödinger equation </h5>
+				<p>
+					\[
+					\left[\frac{-\hbar^{2}}{2m} \nabla^{2} + V (\mathbf{r})\right]
+					\Psi(\mathbf{r}) = E\Psi(\mathbf{r})
+					\]
+					In most simple explaination of this equation is total energy \(E\)is equale to the sum of potential
+					energy \(V (\mathbf{r})\) and kinetic energy \(\frac{ -\hbar^{2}}{2m} \nabla^{2} \). The fancy
+					looking term is just similar term to square of velocity. In Chemistry mostly Time-independent
+					Schrödinger equation to explain consistance properties of material. There are various case for which
+					this equation is solved. Depending on the system one is studying. For chemists The most important
+					system is Hydrogen atom. Also this is most complex system that can be solved compleatly. All the
+					other system have just approximate solution based on Hydrogen atom solution.
+				</p>
+				<br>
+				<h3> Hydrogen Atom</h3>
+				<h5> Hydrogen atom Schrödinger equation </h5>
+				<p>
+					\[
+					\left( -\frac{\hbar^{2}}{2\mu} \nabla^{2} - \frac{e^{2}}{4\pi \epsilon_{0} r}\right)
+					\psi(\mathbf{r}) = E\psi(\mathbf{r})
+					\]
+				</p>
+				<h5> Its solution is </h5>
+				<p>
+					\[
+					\psi_{nlm}(r,\theta,\phi) =
+					\sqrt{
+					\left ( \frac{2}{na_{0}^{*}}\right)^{2}
+					\frac{(n-l-1)!}{2n(n+l)!}
+					}
+					e^{-\rho/2}
+					\rho^{l}
+					L^{2l+1}_{n-l-1}(\rho)
+					Y^{m}_{l}(\theta,\phi)
+					\]
+					where:
+					\[
+					\rho = \frac{2r}{na_{0}^{*}}
+					\]
+					\(
+					L^{2l + 1}_{n-l-1}(\rho)
+					\)is a generalized Laguerre polynomial of degree \( n-l-1\)<br>
+					\( Y^{m}_{l}(\theta,\phi) \) is a spherical harmonic function of degree \(l\) and order
+					\(m\).
+				</p>
+				<br>
+				<!-- <h2>TITLE HEADING</h2> -->
 				<!-- <h5>Title description, Sep 2, 2017</h5> -->
 				<!-- <div class="fakeimg">Fake Image</div> -->
 				<!-- <p>Some text..</p> -->
 				<!-- <p>Sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do -->
-					<!-- eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud -->
-					<!-- exercitation ullamco.</p> -->
+				<!-- eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud -->
+				<!-- exercitation ullamco.</p> -->
 			</div>
 		</div>
 	</div>
