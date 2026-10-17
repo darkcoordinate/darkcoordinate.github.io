@@ -1,0 +1,2534 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+	<title>roehr-lab</title>
+
+	<link rel="stylesheet" href="https://unpkg.com/reveal.js@5.1.0/dist/reset.css">
+	<link rel="stylesheet" href="https://unpkg.com/reveal.js@5.1.0/dist/reveal.css">
+	<link rel="stylesheet" href="https://unpkg.com/reveal.js@5.1.0/dist/theme/black.css">
+
+	<!-- Theme used for syntax highlighted code -->
+	<link rel="stylesheet" href="https://unpkg.com/reveal@0.0.4/plugin/highlight/monokai.css">
+	<!-- <script type="importmap">
+		{
+			"imports": {
+				"three": "../three.js/build/three.module.js",
+				"three/addons/": "../three.js/examples/jsm/"
+			}
+		}
+	</script> -->
+
+	<script type="importmap">
+		{
+		  "imports": {
+			"three": "https://unpkg.com/three@^0.171.0/build/three.module.js",
+					  "three/addons/": "https://unpkg.com/three@^0.171.0/examples/jsm/"
+		  }
+		}
+	  </script>
+	<script type="text/javascript" id="MathJax-script" async
+		src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+		</script>
+	<style>
+		.button {
+			background-color: #ffffff;
+			/* Green */
+			border: none;
+			color: black;
+			padding: 15px 32px;
+			text-align: center;
+			text-decoration: none;
+			display: inline-block;
+			font-size: 56px;
+			margin: 4px 2px;
+			cursor: pointer;
+			-webkit-transition-duration: 0.4s;
+			/* Safari */
+			transition-duration: 0.4s;
+		}
+
+		.button1 {
+			box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+		}
+
+		.button2:hover {
+			box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
+		}
+
+		/*=== 1.4. Basic Grid (Flexible blocks)
+Auto-fill & Equal height === */
+		.grid {
+			clear: both;
+			display: -webkit-box;
+			display: -ms-flexbox;
+			display: flex;
+			-ms-flex-wrap: wrap;
+			flex-wrap: wrap;
+			margin-left: auto;
+			margin-right: auto;
+		}
+
+		.grid:after {
+			clear: both;
+		}
+
+		.grid:before {
+			content: '';
+			display: table;
+		}
+
+		.grid {
+			clear: both;
+			display: flex !important;
+			flex-wrap: wrap !important;
+			gap: 32px !important;
+			justify-content: center !important;
+			align-items: flex-start !important;
+			width: 100% !important;
+			margin-left: auto;
+			margin-right: auto;
+		}
+
+		.grid > .column {
+			display: flex;
+			flex-direction: column;
+			flex: 1 1 560px !important;
+			min-width: 320px !important;
+			max-width: 100% !important;
+			padding: 0.2rem;
+			position: relative;
+			box-sizing: border-box !important;
+		}
+
+		.grid > #myCanvasId {
+			flex: 0 1 720px !important;
+			max-width: 720px !important;
+		}
+
+		table,
+		th,
+		td {
+			border: 1px solid black;
+		}
+
+
+		/* .slide-number, */
+		/* .reveal.has-logo .slide-number { */
+		/* bottom: 14px !important; */
+		/* left: 50px !important; */
+		/* top: unset !important; */
+		/* color: #777777 !important; */
+		/* font-size: x-large; */
+		/* } */
+
+		.reveal .slide-number {
+			font-size: 60pt;
+			color: rgb(75, 75, 75);
+			background-color: beige;
+			left: unset;
+			bottom: unset;
+			top: 20px;
+			right: 20px;
+		}
+
+		.reveal div.footer {
+			position: absolute;
+			bottom: 0;
+			left: 0;
+			padding: 0;
+			margin: 0;
+			font-size: medium;
+			color: darkblue;
+		}
+
+		.reveal .playback{
+			width: 200px;
+		}
+
+		/* ===== Modern Slidecontainer & Control Panel Styling ===== */
+		@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+		.slidecontainer {
+			background: #ffffff;
+			border: 1px solid #e2e8f0;
+			border-radius: 18px;
+			box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.04), 0 16px 32px -4px rgba(0, 0, 0, 0.08);
+			padding: 20px 24px;
+			font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+			color: #1e293b;
+			box-sizing: border-box;
+			max-width: 100%;
+		}
+
+		.control-panel-header {
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			margin-bottom: 12px;
+			padding-bottom: 12px;
+			border-bottom: 1.5px solid #f1f5f9;
+		}
+
+		.panel-title {
+			font-size: 24px;
+			font-weight: 700;
+			color: #0f172a;
+			display: flex;
+			align-items: center;
+			gap: 10px;
+			letter-spacing: -0.01em;
+		}
+
+		.panel-title i {
+			color: #6366f1;
+		}
+
+		.slidecontainer table {
+			width: 100% !important;
+			border-collapse: separate !important;
+			border-spacing: 0 8px !important;
+			border: none !important;
+			margin: 0 !important;
+		}
+
+		.slidecontainer tr {
+			background: #f8fafc;
+			border-radius: 12px;
+			transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+		}
+
+		.slidecontainer tr:hover {
+			background: #f1f5f9;
+			box-shadow: 0 4px 14px rgba(99, 102, 241, 0.08);
+			transform: translateY(-1px);
+		}
+
+		.slidecontainer th,
+		.slidecontainer td {
+			border: none !important;
+			padding: 10px 16px !important;
+			vertical-align: middle !important;
+			font-size: 22px !important;
+			color: #334155;
+			line-height: 1.4;
+		}
+
+		.slidecontainer tr td:first-child {
+			border-top-left-radius: 12px;
+			border-bottom-left-radius: 12px;
+			font-weight: 500;
+			width: 52%;
+		}
+
+		.slidecontainer tr td:nth-child(2) {
+			width: 36%;
+		}
+
+		.slidecontainer tr td:last-child {
+			border-top-right-radius: 12px;
+			border-bottom-right-radius: 12px;
+			text-align: right;
+			width: 12%;
+		}
+
+		.control-label {
+			display: flex;
+			align-items: center;
+			gap: 10px;
+			color: #1e293b;
+			font-weight: 600;
+		}
+
+		.control-icon {
+			width: 34px;
+			height: 34px;
+			border-radius: 10px;
+			display: inline-flex;
+			align-items: center;
+			justify-content: center;
+			font-size: 16px;
+			flex-shrink: 0;
+		}
+
+		.icon-electrons { background: #ede9fe; color: #7c3aed; }
+		.icon-spin      { background: #e0e7ff; color: #4f46e5; }
+		.icon-path-s    { background: #e0f2fe; color: #0284c7; }
+		.icon-path-m    { background: #fef3c7; color: #d97706; }
+		.icon-final-m   { background: #fce7f3; color: #db2777; }
+
+		.slidecontainer .num-input {
+			width: 90px;
+			height: 42px;
+			padding: 4px 10px;
+			border-radius: 10px;
+			border: 2px solid #cbd5e1;
+			background: #ffffff;
+			color: #0f172a;
+			font-size: 22px;
+			font-weight: 700;
+			text-align: center;
+			outline: none;
+			box-sizing: border-box;
+			transition: all 0.2s ease;
+			box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.04);
+		}
+
+		.slidecontainer .num-input:focus {
+			border-color: #6366f1;
+			box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.22);
+			background: #ffffff;
+		}
+
+		.slidecontainer .slider {
+			-webkit-appearance: none;
+			appearance: none;
+			width: 100% !important;
+			height: 10px;
+			border-radius: 999px;
+			background: #e2e8f0;
+			outline: none;
+			transition: background 0.2s ease;
+			cursor: pointer;
+			margin: 0;
+			display: block;
+		}
+
+		.slidecontainer .slider:hover {
+			background: #cbd5e1;
+		}
+
+		.slidecontainer .slider::-webkit-slider-thumb {
+			-webkit-appearance: none;
+			appearance: none;
+			width: 24px;
+			height: 24px;
+			border-radius: 50%;
+			background: #6366f1;
+			border: 3.5px solid #ffffff;
+			box-shadow: 0 2px 8px rgba(99, 102, 241, 0.45), 0 0 0 1px rgba(99, 102, 241, 0.2);
+			cursor: pointer;
+			transition: transform 0.15s ease, background 0.15s ease, box-shadow 0.15s ease;
+		}
+
+		.slidecontainer .slider::-webkit-slider-thumb:hover {
+			transform: scale(1.22);
+			background: #4f46e5;
+			box-shadow: 0 4px 14px rgba(79, 70, 229, 0.55), 0 0 0 1px rgba(79, 70, 229, 0.3);
+		}
+
+		.slidecontainer .slider::-webkit-slider-thumb:active {
+			transform: scale(1.08);
+			background: #4338ca;
+		}
+
+		.slidecontainer .slider::-moz-range-thumb {
+			width: 24px;
+			height: 24px;
+			border-radius: 50%;
+			background: #6366f1;
+			border: 3.5px solid #ffffff;
+			box-shadow: 0 2px 8px rgba(99, 102, 241, 0.45);
+			cursor: pointer;
+			transition: transform 0.15s ease, background 0.15s ease;
+		}
+
+		.slidecontainer .slider::-moz-range-thumb:hover {
+			transform: scale(1.22);
+			background: #4f46e5;
+		}
+
+		.slidecontainer .slider::-moz-range-track {
+			height: 10px;
+			border-radius: 999px;
+			background: #e2e8f0;
+		}
+
+		.slidecontainer .value-badge {
+			display: inline-flex;
+			align-items: center;
+			justify-content: center;
+			min-width: 44px;
+			height: 34px;
+			padding: 0 10px;
+			border-radius: 8px;
+			background: #eef2ff;
+			color: #4f46e5;
+			font-weight: 700;
+			font-size: 20px;
+			font-family: 'Inter', monospace, sans-serif;
+			border: 1.5px solid #c7d2fe;
+			box-shadow: 0 1px 3px rgba(79, 70, 229, 0.08);
+			box-sizing: border-box;
+			transition: all 0.15s ease;
+		}
+
+		.slidecontainer tr:hover .value-badge {
+			background: #e0e7ff;
+			border-color: #a5b4fc;
+			color: #3730a3;
+		}
+
+		.control-actions {
+			display: flex;
+			align-items: center;
+			gap: 14px;
+			margin-top: 16px;
+			padding-top: 14px;
+			border-top: 1.5px solid #f1f5f9;
+			flex-wrap: wrap;
+		}
+
+		.btn-generate {
+			display: inline-flex;
+			align-items: center;
+			gap: 10px;
+			padding: 12px 24px;
+			border-radius: 12px;
+			border: none;
+			background: linear-gradient(135deg, #4f46e5 0%, #6366f1 100%);
+			color: #ffffff !important;
+			font-size: 20px;
+			font-weight: 600;
+			font-family: 'Inter', sans-serif;
+			cursor: pointer;
+			box-shadow: 0 4px 14px rgba(99, 102, 241, 0.35);
+			transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+		}
+
+		.btn-generate:hover {
+			transform: translateY(-2px);
+			box-shadow: 0 6px 20px rgba(99, 102, 241, 0.48);
+			background: linear-gradient(135deg, #4338ca 0%, #4f46e5 100%);
+		}
+
+		.btn-generate:active {
+			transform: translateY(0);
+			box-shadow: 0 2px 6px rgba(99, 102, 241, 0.3);
+		}
+
+		.btn-download {
+			display: inline-flex;
+			align-items: center;
+			gap: 10px;
+			padding: 12px 22px;
+			border-radius: 12px;
+			border: none;
+			background: linear-gradient(135deg, #0d9488 0%, #14b8a6 100%);
+			color: #ffffff !important;
+			font-size: 20px;
+			font-weight: 600;
+			font-family: 'Inter', sans-serif;
+			cursor: pointer;
+			box-shadow: 0 4px 14px rgba(13, 148, 136, 0.3);
+			transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+		}
+
+		.btn-download:hover {
+			transform: translateY(-2px);
+			box-shadow: 0 6px 20px rgba(13, 148, 136, 0.45);
+			background: linear-gradient(135deg, #0f766e 0%, #0d9488 100%);
+		}
+
+		.btn-download:active {
+			transform: translateY(0);
+			box-shadow: 0 2px 6px rgba(13, 148, 136, 0.25);
+		}
+
+		.animation-hint-pill {
+			display: inline-flex;
+			align-items: center;
+			gap: 10px;
+			padding: 8px 16px;
+			border-radius: 20px;
+			background: #f8fafc;
+			border: 1px solid #e2e8f0;
+			color: #475569;
+			font-size: 17px;
+			font-weight: 500;
+			margin-left: auto;
+		}
+
+		.kbd-key {
+			display: inline-flex;
+			align-items: center;
+			justify-content: center;
+			min-width: 26px;
+			height: 26px;
+			padding: 0 8px;
+			border-radius: 6px;
+			background: #ffffff;
+			border: 1.5px solid #cbd5e1;
+			border-bottom: 2.5px solid #94a3b8;
+			color: #1e293b;
+			font-family: monospace;
+			font-size: 15px;
+			font-weight: 700;
+			box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+		}
+
+		/* ===== Responsive Canvas & Mobile Adjustment Toolbar ===== */
+		#myCanvasId {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			justify-content: flex-start;
+			width: 100%;
+			max-width: 100%;
+			box-sizing: border-box;
+		}
+
+		#myCanvasId canvas {
+			max-width: 100% !important;
+			height: auto !important;
+			aspect-ratio: 1 / 1;
+			display: block;
+			border-radius: 16px;
+			box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.04), 0 14px 28px -4px rgba(0, 0, 0, 0.08);
+			background: #ffffff;
+			touch-action: none !important;
+			margin: 0 auto;
+			transition: width 0.2s ease, height 0.2s ease;
+		}
+
+		#igc1 {
+			width: 100%;
+			max-width: 720px;
+		}
+
+		.canvas-toolbar {
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			width: 100%;
+			max-width: 720px;
+			margin-bottom: 12px;
+			padding: 10px 16px;
+			background: #ffffff;
+			border: 1px solid #e2e8f0;
+			border-radius: 14px;
+			box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+			box-sizing: border-box;
+			gap: 12px;
+			flex-wrap: wrap;
+			font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+		}
+
+		.canvas-toolbar-group {
+			display: flex;
+			align-items: center;
+			gap: 8px;
+		}
+
+		.canvas-toolbar-label {
+			font-size: 16px;
+			font-weight: 600;
+			color: #334155;
+			display: flex;
+			align-items: center;
+			gap: 6px;
+		}
+
+		.canvas-size-badge {
+			display: inline-flex;
+			align-items: center;
+			justify-content: center;
+			min-width: 58px;
+			height: 28px;
+			padding: 0 8px;
+			border-radius: 6px;
+			background: #eef2ff;
+			color: #4f46e5;
+			font-size: 15px;
+			font-weight: 700;
+			font-family: monospace;
+			border: 1px solid #c7d2fe;
+		}
+
+		.canvas-size-slider-wrap {
+			display: flex;
+			align-items: center;
+			gap: 6px;
+			flex: 1;
+			min-width: 160px;
+		}
+
+		.canvas-size-slider-wrap input[type="range"] {
+			-webkit-appearance: none;
+			appearance: none;
+			width: 100%;
+			height: 6px;
+			border-radius: 999px;
+			background: #e2e8f0;
+			outline: none;
+			cursor: pointer;
+			margin: 0;
+		}
+
+		.canvas-size-slider-wrap input[type="range"]::-webkit-slider-thumb {
+			-webkit-appearance: none;
+			appearance: none;
+			width: 18px;
+			height: 18px;
+			border-radius: 50%;
+			background: #6366f1;
+			border: 2.5px solid #ffffff;
+			box-shadow: 0 2px 6px rgba(99, 102, 241, 0.45);
+			cursor: pointer;
+			transition: transform 0.15s ease;
+		}
+
+		.canvas-size-slider-wrap input[type="range"]::-webkit-slider-thumb:hover {
+			transform: scale(1.2);
+			background: #4f46e5;
+		}
+
+		.canvas-size-btn {
+			display: inline-flex;
+			align-items: center;
+			justify-content: center;
+			padding: 6px 12px;
+			border-radius: 8px;
+			border: 1px solid #cbd5e1;
+			background: #f8fafc;
+			color: #334155;
+			font-size: 15px;
+			font-weight: 600;
+			cursor: pointer;
+			transition: all 0.15s ease;
+			font-family: 'Inter', sans-serif;
+		}
+
+		.canvas-size-btn:hover {
+			background: #e0e7ff;
+			border-color: #a5b4fc;
+			color: #4338ca;
+			transform: translateY(-1px);
+		}
+
+		.canvas-size-btn.active {
+			background: #6366f1;
+			border-color: #6366f1;
+			color: #ffffff;
+			box-shadow: 0 2px 6px rgba(99, 102, 241, 0.35);
+		}
+
+		.canvas-zoom-btn {
+			width: 30px;
+			height: 30px;
+			border-radius: 8px;
+			border: 1px solid #cbd5e1;
+			background: #ffffff;
+			color: #334155;
+			font-size: 16px;
+			font-weight: 700;
+			display: inline-flex;
+			align-items: center;
+			justify-content: center;
+			cursor: pointer;
+			transition: all 0.15s ease;
+			line-height: 1;
+		}
+
+		.canvas-zoom-btn:hover {
+			background: #f1f5f9;
+			border-color: #94a3b8;
+			color: #0f172a;
+		}
+
+		/* ===== Universal Scrollability for Desktop & Mobile ===== */
+		html,
+		body,
+		html.reveal-full-page,
+		body.reveal-full-page {
+			overflow-y: auto !important;
+			overflow-x: hidden !important;
+			height: auto !important;
+			min-height: 100vh !important;
+			background: #ffffff !important;
+			-webkit-overflow-scrolling: touch !important;
+		}
+
+		.reveal {
+			overflow-y: auto !important;
+			overflow-x: hidden !important;
+			height: auto !important;
+			min-height: 100vh !important;
+			position: relative !important;
+			-webkit-overflow-scrolling: touch !important;
+		}
+
+		/* Disable rigid transform-scaling across desktop and mobile so page scrolls naturally */
+		.reveal .slides {
+			transform: none !important;
+			position: relative !important;
+			width: 100% !important;
+			max-width: 1760px !important;
+			height: auto !important;
+			min-height: 100vh !important;
+			top: 0 !important;
+			left: 0 !important;
+			right: 0 !important;
+			bottom: 0 !important;
+			margin: 0 auto !important;
+			padding: 20px 24px 120px 24px !important;
+			box-sizing: border-box !important;
+			pointer-events: auto !important;
+			overflow: visible !important;
+		}
+
+		.reveal .slides > section,
+		.reveal .slides > section.present {
+			position: relative !important;
+			top: 0 !important;
+			left: 0 !important;
+			transform: none !important;
+			width: 100% !important;
+			height: auto !important;
+			min-height: auto !important;
+			max-height: none !important;
+			overflow: visible !important;
+			box-sizing: border-box !important;
+			padding: 10px 10px 80px 10px !important;
+		}
+
+		.wrap {
+			width: 100% !important;
+			overflow: visible !important;
+		}
+
+		/* Sleek custom scrollbars */
+		::-webkit-scrollbar {
+			width: 10px;
+			height: 10px;
+		}
+
+		::-webkit-scrollbar-track {
+			background: #f1f5f9;
+			border-radius: 6px;
+		}
+
+		::-webkit-scrollbar-thumb {
+			background: #cbd5e1;
+			border-radius: 6px;
+			border: 2px solid #f1f5f9;
+		}
+
+		::-webkit-scrollbar-thumb:hover {
+			background: #94a3b8;
+		}
+
+		/* ===== Configuration State Function (#root) Card ===== */
+		.root-card-wrapper {
+			margin-top: 24px;
+			width: 100%;
+			box-sizing: border-box;
+			clear: both;
+		}
+
+		.root-header {
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			margin-bottom: 12px;
+			padding: 0 4px;
+			flex-wrap: wrap;
+			gap: 8px;
+		}
+
+		.root-header-title {
+			font-size: 22px;
+			font-weight: 700;
+			color: #0f172a;
+			display: flex;
+			align-items: center;
+			gap: 10px;
+			font-family: 'Inter', sans-serif;
+		}
+
+		.root-header-title i {
+			color: #6366f1;
+		}
+
+		.root-header-badge {
+			display: inline-flex;
+			align-items: center;
+			gap: 6px;
+			padding: 5px 14px;
+			border-radius: 20px;
+			background: #eef2ff;
+			border: 1px solid #c7d2fe;
+			color: #4338ca;
+			font-size: 15px;
+			font-weight: 600;
+			font-family: 'Inter', sans-serif;
+		}
+
+		#root {
+			position: relative !important;
+			display: block !important;
+			width: 100% !important;
+			padding: 24px 28px !important;
+			background: #ffffff !important;
+			border: 1.5px solid #e2e8f0 !important;
+			border-radius: 18px !important;
+			box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.04), 0 16px 32px -4px rgba(0, 0, 0, 0.08) !important;
+			box-sizing: border-box !important;
+			overflow-x: auto !important;
+			overflow-y: visible !important;
+			-webkit-overflow-scrolling: touch !important;
+			min-height: 520px !important;
+			font-family: 'Inter', sans-serif !important;
+			transition: all 0.2s ease;
+		}
+
+		#root:hover {
+			border-color: #cbd5e1 !important;
+			box-shadow: 0 8px 24px -4px rgba(99, 102, 241, 0.12) !important;
+		}
+
+		#root mjx-container {
+			font-size: 112% !important;
+			color: #0f172a !important;
+			margin: 10px 0 !important;
+			text-align: left !important;
+			display: block !important;
+			line-height: 1.6 !important;
+			overflow-x: auto !important;
+		}
+
+		.mobile-scroll-hint {
+			display: none;
+			text-align: center;
+			padding: 8px 16px;
+			margin: 10px auto 18px auto;
+			background: #f1f5f9;
+			color: #64748b;
+			border-radius: 20px;
+			font-size: 15px;
+			font-weight: 600;
+			width: fit-content;
+			box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+			animation: pulseHint 2s infinite ease-in-out;
+		}
+
+		@keyframes pulseHint {
+			0%, 100% { opacity: 0.85; transform: translateY(0); }
+			50% { opacity: 1; transform: translateY(3px); }
+		}
+
+		@media (max-width: 900px) {
+			.grid {
+				display: flex !important;
+				flex-direction: column !important;
+				width: 100% !important;
+			}
+
+			.grid > .column {
+				width: 100% !important;
+				max-width: 100% !important;
+			}
+
+			.canvas-toolbar {
+				justify-content: center;
+			}
+
+			#myCanvasId {
+				margin-bottom: 12px;
+			}
+
+			.mobile-scroll-hint {
+				display: block;
+			}
+		}
+	</style>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+</head>
+
+<body>
+	<div class="reveal">
+		<div class="slides">
+
+
+			\(
+			\def\AA{{\bf &#x212B;}}
+			\def\ii{{ &#x1D7D9;}}
+			\def\bold#1{{\bf #1}}
+			\)
+
+			<section data-background-color="white">
+				<h4>Branching Diagram approach to make configuration state function</h4>
+				<div class="wrap">
+					<div class="grid ">
+						<div class="column" id="myCanvasId">
+							<div id="igc1">
+								<div class="canvas-toolbar">
+									<div class="canvas-toolbar-group">
+										<span class="canvas-toolbar-label">
+											<i class="fa fa-arrows-alt" style="color: #6366f1;"></i> Canvas Size:
+										</span>
+										<span id="canvasSizeDisplay" class="canvas-size-badge">720px</span>
+									</div>
+
+									<div class="canvas-size-slider-wrap">
+										<button type="button" class="canvas-zoom-btn" id="zoomOutBtn" title="Decrease canvas size">−</button>
+										<input type="range" id="canvasSizeSlider" min="260" max="720" value="720" step="10" title="Adjust canvas size">
+										<button type="button" class="canvas-zoom-btn" id="zoomInBtn" title="Increase canvas size">+</button>
+									</div>
+
+									<div class="canvas-toolbar-group">
+										<button type="button" class="canvas-size-btn" data-size="320" title="320px for mobile">320px</button>
+										<button type="button" class="canvas-size-btn" data-size="480" title="480px for tablet">480px</button>
+										<button type="button" class="canvas-size-btn active" data-size="720" title="720px full size">720px</button>
+										<button type="button" class="canvas-size-btn" id="autoFitBtn" title="Auto-fit screen width">Auto</button>
+									</div>
+								</div>
+							</div>
+							<div class="mobile-scroll-hint">
+								<i class="fa fa-angle-double-down" style="color: #6366f1;"></i> Scroll down for parameters & wave function
+							</div>
+						</div>
+						<div class="column" style="font-size: x-large; text-align: left;">
+							<!-- Main Content -->
+							<div id="info">
+								<!-- <p style="font-size: 25px;">Slide the slider to get various Spin chain based on S and M
+								</p>
+								<p style="font-size: 25px;">Press "D" to run animation </p> -->
+								<div class="slidecontainer">
+									<div class="control-panel-header">
+										<div class="panel-title">
+											<i class="fa fa-sliders"></i>
+											<span>Spin Configuration Controls</span>
+										</div>
+										<div class="animation-hint-pill">
+											<kbd class="kbd-key">D</kbd>
+											<span>Press <strong>D</strong> for Animation</span>
+										</div>
+									</div>
+
+									<table>
+										<tr>
+											<td>
+												<div class="control-label">
+													<span class="control-icon icon-electrons"><i class="fa fa-circle-o"></i></span>
+													<span>Number of electrons</span>
+												</div>
+											</td>
+											<td>
+												<input type="number" id="nelec" name="nelec" value="6" min="1" max="20" class="num-input">
+											</td>
+											<td><span id="nm1" class="value-badge">6</span></td>
+										</tr>
+										<tr>
+											<td>
+												<div class="control-label">
+													<span class="control-icon icon-spin"><i class="fa fa-arrows-v"></i></span>
+													<span>Select final \(S\) (Spin)</span>
+												</div>
+											</td>
+											<td>
+												<input type="range" min="0" max="20" value="0" class="slider" id="myRange">
+											</td>
+											<td><span id="nm2" class="value-badge">0</span></td>
+										</tr>
+										<tr>
+											<td>
+												<div class="control-label">
+													<span class="control-icon icon-path-s"><i class="fa fa-code-fork"></i></span>
+													<span>Pathway of \(S\) (combination)</span>
+												</div>
+											</td>
+											<td>
+												<input type="range" min="0" max="20" value="0" class="slider" id="myRange3">
+											</td>
+											<td><span id="nm3" class="value-badge">0</span></td>
+										</tr>
+										<tr>
+											<td>
+												<div class="control-label">
+													<span class="control-icon icon-path-m"><i class="fa fa-line-chart"></i></span>
+													<span>Pathway of \(M\) (High Spin)</span>
+												</div>
+											</td>
+											<td>
+												<input type="range" min="0" max="20" value="0" class="slider" id="myRange4">
+											</td>
+											<td><span id="nm4" class="value-badge">0</span></td>
+										</tr>
+										<tr>
+											<td>
+												<div class="control-label">
+													<span class="control-icon icon-final-m"><i class="fa fa-bullseye"></i></span>
+													<span>Select final \(M\)</span>
+												</div>
+											</td>
+											<td>
+												<input type="range" min="0" max="20" value="0" class="slider" id="myRange5">
+											</td>
+											<td><span id="nm5" class="value-badge">0</span></td>
+										</tr>
+									</table>
+
+									<div class="control-actions">
+										<button id="myRange2" class="btn-generate">
+											<i class="fa fa-refresh"></i> Generate Diagram
+										</button>
+										<button class="btn-download w3-btn w3-teal" id="getImage">
+											<i class="fa fa-download"></i> Download Image
+										</button>
+									</div>
+								</div>
+							</div>
+
+							<div class="root-card-wrapper">
+								<div class="root-header">
+									<div class="root-header-title">
+										<i class="fa fa-calculator"></i>
+										<span>Configuration State Function \( |\Psi \rangle \)</span>
+									</div>
+									<div class="root-header-badge">
+										<i class="fa fa-check-circle"></i> Result Display
+									</div>
+								</div>
+								<div id="root" style="position: relative;"></div>
+							</div>
+							<!-- <div id="make1" >
+								<p class="fragment fade-in" id="equation3">
+									\( |\Psi ^{S=1,M=0} \rangle= \substack { \displaystyle { - \frac { 1 }{ \sqrt { 3}}
+									|\downarrow\downarrow\uparrow\uparrow \rangle
+									+ \frac { 1 }{ \sqrt { 12}} |\downarrow\uparrow\downarrow\uparrow \rangle
+									+ \frac { 1 }{ \sqrt { 12}} |\uparrow\downarrow\downarrow\uparrow \rangle }\\
+									\displaystyle {- \frac { 1 }{ \sqrt { 12}} |\downarrow\uparrow\uparrow\downarrow
+									\rangle
+									- \frac { 1 }{ \sqrt { 12}} |\uparrow\downarrow\uparrow\downarrow \rangle
+									+ \frac { 1 }{ \sqrt { 3}} |\uparrow\uparrow\downarrow\downarrow \rangle }}\)</p>
+							</div> -->
+						</div>
+					</div>
+				</div>
+
+			</section>
+		</div>
+	</div>
+
+	<script src="https://unpkg.com/reveal.js@5.1.0/dist/reveal.js"></script>
+	<script src="https://unpkg.com/reveal.js@5.1.0/plugin/notes/notes.js"></script>
+	<script src="https://unpkg.com/reveal.js@5.1.0/plugin/markdown/markdown.js"></script>
+	<script src="https://unpkg.com/reveal.js@5.1.0/plugin/highlight/highlight.js"></script>
+	<script src="as1.js"></script>
+
+	<script>
+		// More info about initialization & config:
+		// - https://revealjs.com/initialization/
+		// - https://revealjs.com/config/
+		Reveal.initialize({
+			hash: true,
+			width: 1920,
+			height: 720,
+			scale: 0.5,
+			slideNumber: false,
+			autoSlide: 0,
+			loop: false,
+			preloadIframes: true,
+			touch: false, // Prevents Reveal from hijacking touch swipes, enabling natural page scroll
+
+			// Learn about plugins: https://revealjs.com/plugins/
+			plugins: [RevealMarkdown, RevealHighlight, RevealNotes]
+		});
+
+		// Ensure desktop and mobile stay naturally scrollable and never scale-clipped
+		function releaseRevealTransform() {
+			const slidesEl = document.querySelector('.reveal .slides');
+			if (slidesEl) {
+				slidesEl.style.transform = 'none';
+				slidesEl.style.height = 'auto';
+				slidesEl.style.minHeight = '100vh';
+			}
+			const sectionEl = document.querySelector('.reveal .slides section');
+			if (sectionEl) {
+				sectionEl.style.transform = 'none';
+				sectionEl.style.top = '0';
+			}
+		}
+		Reveal.on('ready', releaseRevealTransform);
+		Reveal.on('resize', releaseRevealTransform);
+		window.addEventListener('resize', releaseRevealTransform);
+		setTimeout(releaseRevealTransform, 100);
+	</script>
+
+											<script type="module">
+		import * as THREE from 'three';
+		import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+		import { RGBELoader } from 'three/addons/loaders/RGBELoader.js';
+		import { GUI } from 'three/addons/libs/lil-gui.module.min.js';
+		import Stats from 'three/addons/libs/stats.module.js';
+		import { EXRExporter } from 'three/addons/exporters/EXRExporter.js';
+		import { FontLoader } from 'three/addons/loaders/FontLoader.js';
+		import { TrackballControls } from 'three/addons/controls/TrackballControls.js';
+		import { CSS3DRenderer, CSS3DObject } from 'three/addons/renderers/CSS3DRenderer.js';
+
+		let camera, scene, renderer, stats, textm, textn, texto;
+		let cube, sphere, torus, material, bulbLight, bulbMat, hemiLight;
+		let cubeCamera, cubeRenderTarget;
+		let controls;
+		let nelectron = 6;
+		let mpath = 0, maxpath = 0, maxmpath = 0, finalM = 0;
+		let mmpath = 0, finalS = 0;
+		let waveFunction = "";
+		const mv = document.getElementById("root");
+		const div = document.createElement('div');
+		console.log(mv);
+		//const iframe = document.createElement('iframe');
+		let render2;
+		let can;
+		let nn = 0;
+        let renderTarget;
+		let download = 0;
+		let currentCanvasSize = 720;
+
+		init();
+		init2();
+
+
+
+		function setCanvasSize(newSize) {
+			currentCanvasSize = Math.max(240, Math.min(newSize, 1200));
+			if (renderer) {
+				renderer.setSize(currentCanvasSize, currentCanvasSize);
+				if (renderer.domElement) {
+					renderer.domElement.style.maxWidth = '100%';
+					renderer.domElement.style.height = 'auto';
+					renderer.domElement.style.aspectRatio = '1 / 1';
+				}
+			}
+			if (camera) {
+				camera.aspect = 1;
+				camera.updateProjectionMatrix();
+			}
+			const slider = document.getElementById('canvasSizeSlider');
+			if (slider) slider.value = currentCanvasSize;
+			const display = document.getElementById('canvasSizeDisplay');
+			if (display) display.textContent = Math.round(currentCanvasSize) + 'px';
+
+			const btns = document.querySelectorAll('.canvas-size-btn');
+			btns.forEach(b => {
+				b.classList.remove('active');
+				if (b.dataset.size && parseInt(b.dataset.size) === Math.round(currentCanvasSize)) {
+					b.classList.add('active');
+				}
+			});
+
+			if (controls) controls.update();
+			if (scene && camera && renderer) renderer.render(scene, camera);
+		}
+
+		function autoFitCanvas() {
+			let target = 720;
+			const container = document.getElementById('myCanvasId');
+			const availWidth = container ? container.clientWidth : window.innerWidth;
+			if (window.innerWidth < 768 || availWidth < 720) {
+				target = Math.max(260, Math.min(availWidth - 20, window.innerWidth - 30, 720));
+			}
+			setCanvasSize(target);
+		}
+
+		function initCanvasControls() {
+			const slider = document.getElementById('canvasSizeSlider');
+			if (slider) {
+				slider.oninput = function () {
+					setCanvasSize(parseInt(this.value));
+				};
+			}
+
+			const zoomIn = document.getElementById('zoomInBtn');
+			if (zoomIn) {
+				zoomIn.onclick = function () {
+					setCanvasSize(currentCanvasSize + 40);
+				};
+			}
+
+			const zoomOut = document.getElementById('zoomOutBtn');
+			if (zoomOut) {
+				zoomOut.onclick = function () {
+					setCanvasSize(currentCanvasSize - 40);
+				};
+			}
+
+			const autoBtn = document.getElementById('autoFitBtn');
+			if (autoBtn) {
+				autoBtn.onclick = function () {
+					autoFitCanvas();
+				};
+			}
+
+			const sizeBtns = document.querySelectorAll('.canvas-size-btn[data-size]');
+			sizeBtns.forEach(btn => {
+				btn.onclick = function () {
+					setCanvasSize(parseInt(this.dataset.size));
+				};
+			});
+
+			if (window.ResizeObserver && can) {
+				const ro = new ResizeObserver((entries) => {
+					for (let entry of entries) {
+						if (window.innerWidth < 768 && entry.contentRect.width > 0) {
+							const fitSize = Math.max(260, Math.min(entry.contentRect.width - 10, window.innerWidth - 30, 720));
+							if (Math.abs(currentCanvasSize - fitSize) > 30) {
+								setCanvasSize(fitSize);
+							}
+						}
+					}
+				});
+				ro.observe(can);
+			}
+		}
+
+		function init() {
+			renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+			can = document.getElementById("myCanvasId");
+
+			// Set initial responsive size based on screen
+			if (window.innerWidth < 768) {
+				currentCanvasSize = Math.max(280, Math.min(window.innerWidth - 40, 480));
+			} else {
+				currentCanvasSize = 720;
+			}
+
+			renderer.setPixelRatio(window.devicePixelRatio > 1 ? Math.min(window.devicePixelRatio, 2) : 1);
+			renderer.setSize(currentCanvasSize, currentCanvasSize);
+
+			renderer.setAnimationLoop(animation);
+			renderer.outputEncoding = THREE.sRGBEncoding;
+			renderer.toneMapping = THREE.ACESFilmicToneMapping;
+			renderer.setClearColor(0xffffff, 1);
+
+			renderer.domElement.style.maxWidth = '100%';
+			renderer.domElement.style.height = 'auto';
+			renderer.domElement.style.aspectRatio = '1 / 1';
+			renderer.domElement.style.touchAction = 'none';
+
+			can.appendChild(renderer.domElement);
+			initCanvasControls();
+			setCanvasSize(currentCanvasSize);
+			window.addEventListener('resize', onWindowResized);
+		}
+
+		function init2() {
+
+			camera = new THREE.PerspectiveCamera(45, 1, 1, 1000);
+			//camera = new THREE.PerspectiveCamera( 30, 1, 1, 1000 );
+			//camera.position.z = can.parentElement.clientWidth / 60 + (nelectron * 20) / 2;
+
+			camera.position.z = 20 + (nelectron * 20) / 2;
+			camera.position.y = 0;
+			//camera.position.x = 10;
+			//camera.rotation.x = Math.PI/2
+			scene = new THREE.Scene();
+			//scene.rotation.y = 0.1; // avoid flying objects occluding the sun
+			scene.rotation.x = Math.PI / 8;
+			scene.rotation.y = -Math.PI / 6;
+			scene.position.x = - (nelectron * 10) / 5;
+			scene.position.y = - (nelectron * 5) / 5;
+
+			const bulbGeometry = new THREE.SphereGeometry(0.1, 10, 8);
+			bulbLight = new THREE.PointLight(0x00ee88, 400, 1000, 1);
+			bulbMat = new THREE.MeshStandardMaterial({
+				emissive: 0xffffee,
+				emissiveIntensity: 1000,
+				color: 0xffffff
+			});
+			bulbLight.add(new THREE.Mesh(bulbGeometry, bulbMat));
+			bulbLight.position.set(100, 10, 10);
+			bulbLight.castShadow = true;
+			scene.add(bulbLight);
+
+			hemiLight = new THREE.HemisphereLight(0xddeeff, 0x0f0e0d, 1);
+			scene.add(hemiLight);
+			bulbLight = new THREE.PointLight(0xff0000, 400, 500, 2);
+			bulbMat = new THREE.MeshStandardMaterial({
+				emissive: 0xffffee,
+				emissiveIntensity: 100,
+				color: 0x000000
+			});
+			bulbLight.add(new THREE.Mesh(bulbGeometry, bulbMat));
+			bulbLight.position.set(-100, 100, 10);
+			bulbLight.castShadow = true;
+			scene.add(bulbLight);
+
+			bulbLight = new THREE.PointLight(0xff0000, 400, 500, 2);
+			bulbMat = new THREE.MeshStandardMaterial({
+				emissive: 0xffffee,
+				emissiveIntensity: 100,
+				color: 0x000000
+			});
+			bulbLight.add(new THREE.Mesh(bulbGeometry, bulbMat));
+			bulbLight.position.set(100, 100, 0);
+			bulbLight.castShadow = true;
+			scene.add(bulbLight);
+
+			bulbLight = new THREE.PointLight(0xfff0f0, 400, 1000, 2);
+			bulbMat = new THREE.MeshStandardMaterial({
+				emissive: 0xffffee,
+				emissiveIntensity: 100,
+				color: 0x000000
+			});
+			bulbLight.add(new THREE.Mesh(bulbGeometry, bulbMat));
+			bulbLight.position.set(0, 100, 100);
+			bulbLight.castShadow = true;
+			scene.add(bulbLight);
+
+			hemiLight = new THREE.HemisphereLight(0xddeeff, 0x0f0e0d, 0.1);
+			scene.add(hemiLight);
+
+			cubeRenderTarget = new THREE.WebGLCubeRenderTarget(256);
+			cubeRenderTarget.texture.type = THREE.HalfFloatType;
+			cubeCamera = new THREE.CubeCamera(1, 1000, cubeRenderTarget);
+
+			material = new THREE.MeshStandardMaterial({
+				envMap: cubeRenderTarget.texture,
+				roughness: 0.05,
+				metalness: 1
+			});
+
+
+
+
+			//const gui = new GUI();
+
+			//gui.add( material, 'roughness', 0, 1 );
+
+			//gui.add( material, 'metalness', 0, 1 );
+
+			//gui.add( renderer, 'toneMappingExposure', 0, 2 ).name( 'exposure' );
+
+
+
+
+			//sphere = new THREE.Mesh( new THREE.IcosahedronGeometry( 15, 8 ), material );
+
+			//scene.add( sphere );
+
+
+
+
+			const material2 = new THREE.MeshStandardMaterial({
+				roughness: 0.1,
+				metalness: 0
+			});
+
+			const matLite = new THREE.MeshBasicMaterial({
+				color: 0x005555,
+				transparent: true,
+				opacity: 0.9,
+				side: THREE.DoubleSide
+			});
+			console.log(scene.children.length);
+			firl(nelectron, finalS);
+			controls = new OrbitControls(camera, renderer.domElement);
+			controls.autoRotate = false;
+		}
+
+
+
+
+		function firl(nelectron, finalS) {
+			const name = "sphere.json"
+			fetch(name).then(response => {
+				if (!response.ok) {
+					throw new Error(response.statusText);
+				}
+				return response.json();
+			}).then(data => {
+				//console.log(data);
+				const material2 = new THREE.MeshStandardMaterial({
+					roughness: 0.1,
+					metalness: 0
+				});
+				const material3 = new THREE.MeshStandardMaterial({
+					roughness: 0.1,
+					color: 0x00ff00,
+					metalness: 0
+				});
+
+				const material4 = new THREE.MeshStandardMaterial({
+					roughness: 0.1,
+					color: 0xff0000,
+					opacity: 0.4,
+					transparent: true,
+					metalness: 0
+				});
+
+				const material5 = new THREE.MeshStandardMaterial({
+					roughness: 0.1,
+					color: 0xff0000,
+					metalness: 0
+				});
+
+				const pt = GenerateSTree(nelectron)
+				console.log(pt)
+				const indx = GenerateConnection(pt)
+				//console.log(pt)
+				const st = []
+				const ConPoints = []
+				const ConCol = []
+				for (let i = 0; i < pt[0].length; i++) {
+					for (let j = 0; j < pt[0][i].length; j++) {
+						sphere = new THREE.Mesh(new THREE.IcosahedronGeometry(1, 8), material2);
+						sphere.position.x = i * 5;
+						sphere.position.y = pt[0][i][j] * 5 - 10;
+						sphere.position.z = -5;
+						ConPoints.push(i * 5);
+						ConPoints.push(pt[0][i][j] * 5 - 10);
+						ConPoints.push(-5);
+						ConCol.push(0);
+						ConCol.push(0);
+						ConCol.push(0);
+						scene.add(sphere);
+					}
+					st.push(-1)
+				}
+
+				const mad = []
+				pt[1][pt[1].length - 1][finalS].tracePrev(st, mad)
+				console.log("s pathway")
+				console.log(mad)
+				const LinePoint = [];
+				const LineCol = [];
+				const indx2 = [];
+				for (let i = 0; i < mad.length; i++) {
+					for (let j = 0; j < mad[i].length; j++) {
+						LinePoint.push(j * 5);
+						LinePoint.push(mad[i][j] * 5 - 10);
+						LinePoint.push(-i - 10);
+						if (i == mpath) {
+							LineCol.push(0.2);
+							LineCol.push(1);
+							LineCol.push(1);
+						} else {
+							LineCol.push(0);
+							LineCol.push(0);
+							LineCol.push(0);
+						}
+						if (j > 0) {
+							indx2.push((i * mad[i].length) + j - 1);
+							indx2.push((i * mad[i].length) + j);
+						}
+					}
+
+				}
+				maxpath = mad.length;
+				const mlPoint = make_m(mad[mpath]);
+				const mulPoint = mlPoint[0];
+				const mul3d = []
+				const mul3dxyz = []
+				const mul3dCol = []
+				const mRefxyz = []
+				const mRefCol = []
+				const mRefInx = []
+				let mrefi = 0
+				makeMconnection(mlPoint[1])
+				const mad2 = []
+				//console.log("irje");
+				//console.log(mlPoint[1]);
+				mlPoint[1][mlPoint[1].length - 1][finalM].tracePrev(st, mad2);
+				console.log("M pathways")
+				console.log(mad2)
+				for (let i = 0; i < mulPoint.length; i++) {
+					for (let j = 0; j < mulPoint[i].length; j++) {
+						sphere = new THREE.Mesh(new THREE.IcosahedronGeometry(1, 8), material2);
+						sphere.position.x = i * 5;
+						sphere.position.y = mad[mpath][i] * 5 - 10;
+						sphere.position.z = mulPoint[i][j] * 5 + 20;
+						mul3d.push(i * 5);
+						mul3d.push(mad[mpath][i] * 5 - 10);
+						mul3d.push(mulPoint[i][j] * 5 + 20);
+						mul3dxyz.push([i, mad[mpath][i], mulPoint[i][j]])
+						mul3dCol.push(0);
+						mul3dCol.push(0);
+						mul3dCol.push(0);
+						mRefxyz.push(i * 5);
+						mRefxyz.push(mad[mpath][i] * 5 - 10);
+						mRefxyz.push(mulPoint[i][j] * 5 + 20);
+						mRefxyz.push(i * 5);
+						mRefxyz.push(-10);
+						mRefxyz.push(mulPoint[i][j] * 5 + 20);
+						mRefCol.push(0.2);
+						mRefCol.push(0.8);
+						mRefCol.push(0.8);
+						mRefCol.push(0.2);
+						mRefCol.push(0.8);
+						mRefCol.push(0.8);
+						mRefInx.push(mrefi);
+						mrefi++;
+						mRefInx.push(mrefi);
+						mrefi++;
+						scene.add(sphere);
+					}
+
+				}
+
+				const pathI = []
+
+				make_Connection(pathI, mul3dxyz)
+
+				//\console.log(pathI)
+
+				maxmpath = mad2.length;
+
+				//for(let i = 0; i < data["sphere"].length; i++){
+
+				// sphere = new THREE.Mesh( new THREE.IcosahedronGeometry( 1, 8 ), material2 );
+
+				//              sphere.position.x = data["sphere"][i][0];
+
+				//            sphere.position.y = data["sphere"][i][1];
+
+				//          sphere.position.z = data["sphere"][i][2];
+
+				//        scene.add( sphere );
+
+				//    }
+
+
+
+
+				//for(let i = 0; i < data["m_points"].length; i++){
+
+				//  sphere = new THREE.Mesh( new THREE.IcosahedronGeometry( 1, 8 ), material2 );
+
+				//  sphere.position.x = data["m_points"][i][0]*5;
+
+				//  sphere.position.y = data["m_points"][i][1]*5 -10;
+
+				//  sphere.position.z = data["m_points"][i][2]*5 + 20;
+
+				//  scene.add( sphere );
+
+				//}
+
+
+
+
+				for (let i = 0; i < mad[mpath].length; i++) {
+					sphere = new THREE.Mesh(new THREE.IcosahedronGeometry(1, 8), material3);
+					sphere.position.x = i * 5;
+					sphere.position.y = mad[mpath][i] * 5 - 10;
+					sphere.position.z = -5;
+					scene.add(sphere);
+				}
+
+
+
+				console.log("mad2");
+				console.log(mad2);
+
+				for (let i = 0; i < mad2[mmpath].length; i++) {
+
+					sphere = new THREE.Mesh(new THREE.IcosahedronGeometry(1.5, 8), material4);
+
+					sphere.position.x = i * 5;
+
+					sphere.position.y = mad[mpath][i] * 5 - 10;
+
+					sphere.position.z = mad2[mmpath][i] * 2.5 + 20;
+
+					scene.add(sphere);
+
+				}
+
+
+
+				for (let mi = 0; mi < mad2.length; mi++) {
+					for (let i = 0; i < mad2[mi].length; i++) {
+						sphere = new THREE.Mesh(new THREE.IcosahedronGeometry(1, 8), material3);
+						sphere.position.x = i * 5;
+						sphere.position.y = mad[mpath][i] * 5 - 10;
+						sphere.position.z = mad2[mi][i] * 2.5 + 20;
+						scene.add(sphere);
+					}
+				}
+
+
+
+				/*
+	
+				for(let i = 0; i < 14;i++){
+	
+				  const geometry = new THREE.BufferGeometry();
+	
+				  console.log(data["connindx"])
+	
+				  console.log(data["connCol"])
+	
+				  geometry.setIndex( data["connindx"][i] );
+	
+				  geometry.setAttribute( 'position', new THREE.BufferAttribute( new Float32Array(data["connXYZ"][i]), 3 ) );
+	
+				  geometry.setAttribute( 'color', new THREE.Float32BufferAttribute( new Float32Array(data["connCol"][i]), 3 ) );
+	
+				  const materiall = new THREE.LineBasicMaterial( {
+	
+				  color: 0xffffff,
+	
+				  linewidth: 3,
+	
+				  vertexColors: true,
+	
+				  alphaToCoverage: true,
+	
+				} );
+	
+				const mesh = new THREE.LineSegments( geometry, materiall );
+	
+				scene.add(mesh);
+	
+			  }*/
+
+				const geometry = new THREE.BufferGeometry();
+
+				//console.log(data["connindx"])
+
+				//console.log(data["connCol"])
+
+				geometry.setIndex(indx);
+				geometry.setAttribute('position', new THREE.BufferAttribute(new Float32Array(ConPoints), 3));
+				geometry.setAttribute('color', new THREE.Float32BufferAttribute(new Float32Array(ConCol), 3));
+				const materiall = new THREE.LineBasicMaterial({
+					color: 0xffffff,
+					linewidth: 5,
+					vertexColors: true,
+					alphaToCoverage: true,
+				});
+				const mesh = new THREE.LineSegments(geometry, materiall);
+				scene.add(mesh);
+				const geometry1 = new THREE.BufferGeometry();
+
+				//console.log(data["connindx"])
+
+				//console.log(data["connCol"])
+
+				const sline = [
+					0, -10, 0,
+					5 * (nelectron), -10, 0,
+					5 * (nelectron), -10, 0,
+					5 * (nelectron), 5 * (nelectron) - 10, 1,
+					1.25 * (nelectron), -12, 0,
+					4.75 * (nelectron), -12, 0,
+					4.75 * (nelectron), -12, 0,
+					4.75 * (nelectron) - 1, -12 - 1, 0,
+					4.75 * (nelectron), -12, 0,
+					4.75 * (nelectron) - 1, -12 + 1, 0,
+
+					4.75 * (nelectron), -12, 0,
+					4.75 * (nelectron) - 1, -12, 0 - 1,
+					4.75 * (nelectron), -12, 0,
+					4.75 * (nelectron) - 1, -12, 0 + 1,
+					0, 0, 0,
+					1, 1, 1,
+					0, 0, 0,
+					1, 1, 1,
+					0, 0, 0,
+					1, 1, 1,
+					0, 0, 0,
+					1, 1, 1,
+					0, 0, 0,
+					1, 1, 1,
+					0, 0, 0,
+					1, 1, 1,
+				];
+
+				const scolr = [
+					0.6, 0.6, 0.6,
+					0.6, 0.6, 0.6,
+					0.6, 0.6, 0.6,
+					0.6, 0.6, 0.6,
+					0.0, 0.0, 0.0,
+					0.0, 0.0, 0.0,
+					0.0, 0.0, 0.0,
+					0.0, 0.0, 0.0,
+					0.0, 0.0, 0.0,
+					0.0, 0.0, 0.0,
+					0.0, 0.0, 0.0,
+					0.0, 0.0, 0.0,
+					0.0, 0.0, 0.0,
+					0.0, 0.0, 0.0,
+					0.0, 0.0, 0.0,
+					0.0, 0.0, 0.0,
+					0.6, 0.6, 0.6,
+					0.6, 0.6, 0.6,
+					0.6, 0.6, 0.6,
+					0.6, 0.6, 0.6,
+					0.6, 0.6, 0.6,
+					0.6, 0.6, 0.6,
+				];
+
+				const sindx = [
+
+					//0,1,
+
+					//2,3,
+
+					4, 5,
+
+					6, 7,
+
+					8, 9,
+
+					//10,11,
+
+					//12,13
+
+				];
+
+
+
+
+				geometry1.setIndex(sindx);
+				geometry1.setAttribute('position', new THREE.BufferAttribute(new Float32Array(sline), 3));
+				geometry1.setAttribute('color', new THREE.Float32BufferAttribute(new Float32Array(scolr), 3));
+				const mesh1 = new THREE.LineSegments(geometry1, materiall);
+				scene.add(mesh1);
+
+
+
+
+
+
+				const geometry2 = new THREE.BufferGeometry();
+				geometry2.setIndex(pathI);
+				geometry2.setAttribute('position', new THREE.BufferAttribute(new Float32Array(mul3d), 3));
+				geometry2.setAttribute('color', new THREE.Float32BufferAttribute(new Float32Array(mul3dCol), 3));
+				const mesh2 = new THREE.LineSegments(geometry2, materiall);
+				scene.add(mesh2);
+
+
+
+
+
+
+				const geometry4 = new THREE.BufferGeometry();
+				geometry4.setIndex(indx2);
+				geometry4.setAttribute('position', new THREE.BufferAttribute(new Float32Array(LinePoint), 3));
+				geometry4.setAttribute('color', new THREE.Float32BufferAttribute(new Float32Array(LineCol), 3));
+				const mesh4 = new THREE.LineSegments(geometry4, materiall);
+				scene.add(mesh4); //line of s pathways
+
+				const geometry5 = new THREE.BufferGeometry();
+				const materiall2 = new THREE.LineBasicMaterial({
+					color: 0xffffff,
+					linewidth: 2,
+					vertexColors: true,
+					alphaToCoverage: true,
+				});
+				console.log(mRefInx)
+				geometry5.setIndex(mRefInx);
+				geometry5.setAttribute('position', new THREE.BufferAttribute(new Float32Array(mRefxyz), 3));
+				geometry5.setAttribute('color', new THREE.Float32BufferAttribute(new Float32Array(mRefCol), 3));
+				const mesh5 = new THREE.LineSegments(geometry5, materiall2);
+				scene.add(mesh5);
+
+
+
+
+
+
+
+
+				const mref = [
+					0.0, -10.0, 20.0,
+					5 * nelectron, -10.0, 20.0,
+					0.0, -10.0, 20.0 + 2.5,//-0.1,
+					5 * nelectron, -10.0, 20.0 + 2.5,//-0.1,
+					0.0, -10.0, 20.0 + 5,//-0.8,
+					5 * nelectron, -10.0, 20.0 + 5,//-0.8,
+					0.0, -10.0, 20.0 + 7.5,//-1.3,
+					5 * nelectron, -10.0, 20.0 + 7.5,//-1.3,
+					0.0, -10.0, 20.0 - 2.5,// -0.5,
+					5 * nelectron, -10.0, 20.0 - 2.5,// -0.5,
+					0.0, -10.0, 20.0 - 5,// -1.8,
+					5 * nelectron, -10.0, 20.0 - 5,// -1.8,
+					0.0, -10.0, 20.0 - 7.5,// -3.8,
+					5 * nelectron, -10.0, 20.0 - 7.5,// -3.8,
+				];
+
+				const mref_colr = [
+					0.6, 0.6, 0.6,
+					0.6, 0.6, 0.6,
+					0.6, 0.6, 0.6,
+					0.6, 0.6, 0.6,
+					0.6, 0.6, 0.6,
+					0.6, 0.6, 0.6,
+					0.6, 0.6, 0.6,
+					0.6, 0.6, 0.6,
+					0.6, 0.6, 0.6,
+					0.6, 0.6, 0.6,
+					0.6, 0.6, 0.6,
+					0.6, 0.6, 0.6,
+					0.6, 0.6, 0.6,
+					0.6, 0.6, 0.6,
+				];
+
+				const mref_indx = [
+					0, 1,
+					2, 3,
+					4, 5,
+					//6,7,
+					8, 9,
+					10, 11,
+					//12,13
+				];
+
+				const geometry3 = new THREE.BufferGeometry();
+				geometry3.setIndex(mref_indx);
+				geometry3.setAttribute('position', new THREE.BufferAttribute(new Float32Array(mref), 3));
+				geometry3.setAttribute('color', new THREE.Float32BufferAttribute(new Float32Array(mref_colr), 3));
+				const mesh3 = new THREE.LineSegments(geometry3, materiall);
+				scene.add(mesh3);
+
+				const loader = new FontLoader();
+				//loader.load('fonts/Noto_Sans_Math_Regular.json', function (font) {
+				loader.load('Noto_Sans_Math_Regular.json', function (font) {
+
+					const color = 0x000000;
+					const matDark = new THREE.LineBasicMaterial({
+						color: color,
+						side: THREE.DoubleSide
+					});
+
+					const matLite = new THREE.MeshBasicMaterial({
+						color: color,
+						transparent: true,
+						opacity: 0.9,
+						side: THREE.DoubleSide
+					});
+
+					const messagem = 'o';
+					const messagen = 'n';
+					const messageo = 'm';
+
+
+
+
+					const shapesm = font.generateShapes(messagem, 7);
+					const shapesn = font.generateShapes(messagen, 7);
+					const shapeso = font.generateShapes(messageo, 7);
+
+
+
+
+					const geometrym = new THREE.ShapeGeometry(shapesm);
+					const geometryn = new THREE.ShapeGeometry(shapesn);
+					const geometryo = new THREE.ShapeGeometry(shapeso);
+
+
+
+
+					addSlabel(font, 5 * nelectron + 2);
+					textR("Addition of electron", matLite, font, 1.25 * nelectron, -15, 1, 1, -Math.PI / 2, 0, 0);
+
+					//textR("Addition of electron",matLite, font,1.25*nelectron , -15,5,1, 0,0,0 );
+
+					//textR("|",   material3, font,  -6,  -10,   35, 2,   -Math.PI/2,0,0);
+					//for(let i = 0; i < mad2[mmpath].length; i++){
+
+					//sphere = new THREE.Mesh( new THREE.IcosahedronGeometry( 1, 8 ), material3 );
+
+					//sphere.position.x = i*5;
+
+					//sphere.position.y = mad[mpath][i]*5 -10;
+
+					//sphere.position.z = mad2[mmpath][i]*2.5 +20;
+
+					//scene.add( sphere );
+
+
+					//}
+					let slaterDeterminant = "\\displaylines{";
+					for (let j = 0; j < mad2.length; j++) {
+						let cg = 1;
+						let sl = " ";
+						for (let i = 0; i < mad2[j].length; i++) {
+							if (i > 0) {
+								cg *= CG(mad[mpath][i - 1] * 0.5, 0.5, mad2[j][i - 1] * 0.5, (mad2[j][i] - mad2[j][i - 1]) * 0.5, mad[mpath][i] * 0.5, mad2[j][i] * 0.5)
+								if (j == mmpath) {
+									//console.log(mad2[j][i] -mad2[j][i-1] )
+									if (mad2[j][i] - mad2[j][i - 1] != 1) {
+										//textR("\u2191", material5, font, 0 - nelectron * 0 + 5 * i, -10, 28 - mad2[j][i] + 0 * mad2.length + 0 * j, 3, 0, 0, 0);
+										//textR("b",   material3, font,  -10 - nelectron*2 + 2*i,  -10,  10 -2*mad2.length+ 3*j, 2,   -Math.PI/2,0,0);
+										sl += "{\\color{red}\\downarrow}";
+									}
+									else {
+										//textR("\u2193", material5, font, 0 - nelectron * 0 + 5 * i, -10, 28 - mad2[j][i] + 0 * mad2.length + 0 * j, 3, 0, 0, 0);
+										//textR("a",   material3, font,  -10 - nelectron*2 + 2*i,  -10,  10 -2*mad2.length+ 3*j, 2,   -Math.PI/2,0,0);
+										sl += "{\\color{red}\\uparrow}";
+									}
+								}
+								else {
+									//console.log(mad2[j][i] -mad2[j][i-1] )
+									if (mad2[j][i] - mad2[j][i - 1] != 1) {
+										//textR("\u2191",   matLite, font,  -10 - nelectron*2 + 2*i,  -10,  10 -2*mad2.length+ 3*j, 2,   -Math.PI/2,0,0);
+										//textR("b",   matLite, font,  -10 - nelectron*2 + 2*i,  -10,  10 -2*mad2.length+ 3*j, 2,   -Math.PI/2,0,0);
+										sl += "\\downarrow";
+									}
+									else {
+										//textR("\u2193",   matLite, font,  -10  - nelectron*2 + 2*i,  -10, 10-2*mad2.length+  3*j, 2,   -Math.PI/2,0,0);
+										//textR("a",   matLite, font,  -10  - nelectron*2 + 2*i,  -10, 10-2*mad2.length+  3*j, 2,   -Math.PI/2,0,0);
+										sl += "\\uparrow";
+									}
+								}
+							}
+						}
+						//textR(parseFloat(cg.toFixed(4)).toString(),   matLite, font,  -10  - nelectron*2 - 10 ,  -10, 10-2*mad2.length+  3*j, 2,   -Math.PI/2,0,0);
+						//textR(parseFloat((cg*cg).toFixed(8)).toString(),   matLite, font,  -10  - nelectron*2 - 30 ,  -10, 10-2*mad2.length+  3*j, 2,   -Math.PI/2,0,0);
+						//let lg = decimalToFraction(parseFloat((cg*cg)));
+						//textR(DecimalToFraction(cg),   matLite, font,  -10  - nelectron*2 - 30 ,  -10, 10-2*mad2.length+  3*j, 1,   -Math.PI/2,0,0);
+						//textR((lg.bottom).toString(),   matLite, font,  -10  - nelectron*2 - 30 ,  -10, 10-2*mad2.length+  5*j +2, 1,   -Math.PI/2,0,0);
+
+
+						//console.log("print");
+
+
+
+
+						const tex = "\\alpha \\beta";
+						div.innerHTML = 'ifjoerijfrij';
+						if (j % 2 == 0) {
+							slaterDeterminant += DecimalToFraction(cg) + "\\vert" + sl + "\\rangle ";
+
+						}
+						else {
+							slaterDeterminant += DecimalToFraction(cg) + "\\vert" + sl + "\\rangle \\\\";
+
+						}
+						console.log(DecimalToFraction(cg) + sl);
+					}
+
+					div.style.width = '100%';
+					//div.style.height = '360px';
+					div.style.fontSize = '90%';
+					div.style.backgroundColor = "rbga(0,255,0,0.5)";
+					//div.style.opacity= 0.5;
+					MathJax.tex2chtmlPromise(slaterDeterminant + "}").then((node) => {
+						div.innerHTML = '';
+						div.append(node);
+						MathJax.startup.document.clear();
+						MathJax.startup.document.updateDocument();
+					});
+
+					const object = new CSS3DObject(div);
+					console.log(object);
+					object.position.set(0, 0, 0);
+					object.rotation.y = 1;
+					mv.appendChild(div);
+					waveFunction = slaterDeterminant + "}";
+
+
+					//textR("\u27e9",   material3, font,  -5 + 2*(nelectron + 1),  -10,   35, 2,   -Math.PI/2,0,0);
+
+
+
+					//textR("Wave functions with common final S",matLite, font,5*nelectron + 2 ,  -12,30,1, -Math.PI/2,0,Math.PI/2);
+
+					//textR("2",matLite, font,42 ,  -11.3,6,0.5, 0,Math.PI/2,0);
+
+				});
+
+
+
+
+
+				controls.update();
+
+				renderer.render(scene, camera);
+
+			});
+
+		}
+
+		function text(messagem, matLite, font, px = 0, py = 0, pz = 0, size = 4) {
+
+			const shapesm = font.generateShapes(messagem, size);
+
+			const geometrym = new THREE.ShapeGeometry(shapesm);
+
+
+
+			let text = new THREE.Mesh(geometrym, matLite);
+
+			text.position.y = py;
+
+			text.position.x = px;
+
+			text.position.z = pz;
+
+			text.lookAt(camera.position);
+
+			scene.add(text);
+
+			return text;
+
+		}
+
+		function textR(messagem, matLite, font, px = 0, py = 0, pz = 0, size = 4, rx = 0, ry = 0, rz = 0) {
+
+			const shapesm = font.generateShapes(messagem, size);
+
+			const geometrym = new THREE.ShapeGeometry(shapesm);
+
+
+
+			let text = new THREE.Mesh(geometrym, matLite);
+
+			text.position.y = py;
+
+			text.position.x = px;
+
+			text.position.z = pz;
+
+			text.lookAt(camera.position);
+
+			text.rotation.x = rx;
+
+			text.rotation.y = ry;
+
+			text.rotation.z = rz;
+
+
+
+			scene.add(text);
+
+			return text;
+
+		}
+
+
+
+
+		function addSlabel(font, x) {
+
+			const color = 0x000000;
+
+			const matLite = new THREE.MeshBasicMaterial({
+
+				color: color,
+
+				transparent: true,
+
+				opacity: 0.9,
+
+				side: THREE.DoubleSide
+
+			});
+
+
+
+			//textR("S",   matLite, font,   -8, + 5,  0,  4,   0,0,0);
+
+			//textR("0",   matLite, font,  x , -10,   0, 1,   0,0,0);
+
+			//textR("1/2", matLite, font,  x ,  -5,   0, 1,   0,0,0);
+
+			//textR("1",   matLite, font,  x ,   0,   0, 1,   0,0,0);
+
+			//textR("3/3", matLite, font,  x ,   5,   0, 1,   0,0,0);
+
+			//textR("2",   matLite, font,  x ,  10,   0, 1,   0,0,0);
+
+			//textR("5/2", matLite, font,  x ,  15,   0, 1,   0,0,0);
+
+			//textR("3",   matLite, font,  x ,  20,   0, 1,   0,0,0);
+
+			//textR("7/2", matLite, font,  x ,  25,   0, 1,   0,0,0);
+
+			//textR("4",   matLite, font,  x ,  30,   0, 1,   0,0,0);
+
+			for (let i = 0; i < nelectron + 1; i++) {
+				textR("S : " + (i / 2).toString(), matLite, font, x, i * 5 - 10, 0, 1, 0, 0, 0);
+			}
+			textR("m :+3/2", matLite, font, -5, -10, 5, 1, -Math.PI / 2, 0, 0);
+			textR("m :  +1", matLite, font, -5, -10, 15, 1, -Math.PI / 2, 0, 0);
+			textR("m :+1/2", matLite, font, -5, -10, 17.5, 1, -Math.PI / 2, 0, 0);
+			textR("m :   0", matLite, font, -5, -10, 20, 1, -Math.PI / 2, 0, 0);
+			textR("m :-1/2", matLite, font, -5, -10, 22.5, 1, -Math.PI / 2, 0, 0);
+			textR("m :  -1", matLite, font, -5, -10, 25, 1, -Math.PI / 2, 0, 0);
+
+
+
+
+		}
+
+
+
+
+		var getImage = document.getElementById("getImage")
+
+		var slider = document.getElementById("myRange");
+
+		var slider2 = document.getElementById("myRange2");
+
+		var slider3 = document.getElementById("myRange3");
+
+		var slider4 = document.getElementById("myRange4");
+
+		var slider5 = document.getElementById("myRange5");
+
+
+
+		// var output = document.getElementById("demo");
+
+		// var output2 = document.getElementById("demo2");
+
+		// output.innerHTML = slider.value;
+
+		slider.oninput = function () {
+
+			//output2.innerHTML = this.value;
+			var vv1 = document.getElementById("nm2");
+			vv1.innerHTML = this.value;
+
+			console.log("fiel");
+
+			console.log(slider3.max);
+
+			console.log(scene.children.length);
+
+			for (let i = 0; i < 2000; i++) {
+
+				if (scene.children.length > 5) {
+
+					scene.remove(scene.children[scene.children.length - 1]);
+
+				}
+
+			}
+			finalS = this.value;
+			setTimeout(200, firl(nelectron, this.value));
+
+			//slider3.max = maxpath.toString();
+			//setTimeout(bail,200);
+			//sail();
+			//slider4.max = maxmpath.toString();
+
+
+
+
+
+		}
+
+
+
+
+		slider3.oninput = function () {
+
+			//output.innerHTML = this.value;
+			var vv1 = document.getElementById("nm3");
+			vv1.innerHTML = this.value;
+
+
+			mpath = parseInt(this.value);
+
+
+
+			console.log(scene.children.length);
+
+			for (let i = 0; i < 2000; i++) {
+
+				if (scene.children.length > 5) {
+
+					scene.remove(scene.children[scene.children.length - 1]);
+
+				}
+
+			}
+
+			setTimeout(100, firl(nelectron, slider.value));
+			//setTimeout(bail,200);
+			//sail();
+
+			//slider4.max = maxmpath.toString();
+
+		}
+
+
+
+
+
+		slider4.oninput = function () {
+
+			//output.innerHTML = this.value;
+
+			mmpath = parseInt(this.value);
+			var vv1 = document.getElementById("nm4");
+			vv1.innerHTML = this.value;
+
+
+			console.log(slider4.max);
+
+			console.log(scene.children.length);
+
+			for (let i = 0; i < 500; i++) {
+
+				if (scene.children.length > 5) {
+
+					scene.remove(scene.children[scene.children.length - 1]);
+
+				}
+
+			}
+
+			firl(nelectron, slider.value);
+			//setTimeout(bail,200);
+			//sail();
+		}
+
+
+
+
+		slider5.oninput = function () {
+
+			//output.innerHTML = this.value;
+
+			finalM = parseInt(this.value);
+
+			var vv1 = document.getElementById("nm5");
+			vv1.innerHTML = this.value;
+
+
+			console.log(slider5.max);
+
+			console.log(scene.children.length);
+
+			for (let i = 0; i < 500; i++) {
+
+				if (scene.children.length > 5) {
+
+					scene.remove(scene.children[scene.children.length - 1]);
+
+				}
+
+			}
+
+			firl(nelectron, slider.value);
+			//setTimeout(bail,200);
+			//sail();
+
+		}
+
+		slider2.onclick = function () {
+
+			//output.innerHTML = this.value;
+
+			var enee = document.getElementById("nelec");
+			var nvee = document.getElementById("nm1");
+			nvee.innerHTML = enee.value;
+
+			console.log(scene.children.length);
+
+			for (let i = 0; i < 500; i++) {
+
+				if (scene.children.length > 5) {
+
+					scene.remove(scene.children[scene.children.length - 1]);
+
+				}
+
+			}
+
+			console.log("Fieleh");
+
+			console.log(enee.value);
+
+			nelectron = parseInt(enee.value);
+
+			firl(parseInt(enee.value), 0);
+
+			//slider.max = nelectron.toString();
+
+			//slider3.max = maxpath.toString();
+
+			//slider4.max = maxmpath.toString();
+
+		}
+
+		function bail() {
+
+			renderer.render(scene, camera);
+
+			var dataURL = renderer.domElement.toDataURL();
+
+			var img = new Image();
+
+			img.src = dataURL;
+
+			//let sp = document.getElementById("demo");
+
+			//sp.appendChild(img);
+
+			const a = document.createElement('a')
+
+			a.href = dataURL;
+
+			//a.download = "PointM"+nelectron.toString()+"_"+finalS.toString()+"_"+mpath.toString()+"_"+finalM.toString()+"_"+mmpath.toString()+".png";
+
+			a.download = "PointS" + nelectron.toString() + "_" + finalS.toString() + "_" + mpath.toString() + "_" + finalM.toString() + "_" + mmpath.toString() + ".png";
+
+			document.body.appendChild(a)
+
+			a.click()
+
+			document.body.removeChild(a)
+
+
+
+		}
+
+
+
+
+		getImage.onclick = function () {
+
+			renderer.render(scene, camera);
+
+			var dataURL = renderer.domElement.toDataURL();
+
+			var img = new Image();
+
+			img.src = dataURL;
+
+			//let sp = document.getElementById("demo");
+
+			//sp.appendChild(img);
+
+			const a = document.createElement('a')
+
+			a.href = dataURL;
+
+			a.download = "Point.png";
+
+			document.body.appendChild(a)
+
+			a.click()
+
+			document.body.removeChild(a)
+
+		}
+
+		// getLatex.onclick = function () {
+		// 	navigator.clipboard.writeText(waveFunction);
+		// }
+
+		function sail() {
+
+			setTimeout(bail, 1000);
+
+		}
+
+		function clean() {
+
+			for (let i = 0; i < 500; i++) {
+
+				if (scene.children.length > 10) {
+
+					scene.remove(scene.children[scene.children.length - 1]);
+
+				}
+
+			}
+
+		}
+
+		function superDlean() {
+
+			for (let i = 0; i < 2000; i++) {
+
+				if (scene.children.length > 1) {
+
+					scene.remove(scene.children[scene.children.length - 1]);
+
+				}
+
+			}
+
+		}
+
+		function makeImage(i, p, j, q) {
+			return new Promise((resolve) => {
+				setTimeout(() => {
+					download = 0;
+					if (download == 1) {
+						bail();
+					}
+					resolve(i);
+				}, 2000);
+			});
+		}
+		async function f1() {
+			for (let i = 0; i < nelectron / 2 + 1; i++) {
+				for (let p = 0; p < maxpath; p++) {
+					for (let j = 0; j < 2 * i + 1; j++) {
+						for (let q = 0; q < maxmpath; q++) {
+							//let j = 0;
+							//let q = 0;
+							console.log("rioejro")
+							console.log(i, p, j, q);
+							finalS = i;
+							mpath = p;
+							finalM = j;
+							mmpath = q;
+							clean();
+							firl(nelectron, i);
+							const a = await makeImage(i, p, j, q);
+							//await setTimeout(bail,10000);
+							//firl(nelectron , finalS);
+							//sail();
+
+						}
+					}
+				}
+			}
+		}
+		document.body.onkeyup = function (e) {
+
+			let keyPressed = e.which;
+
+			console.log(keyPressed);
+
+			if (keyPressed == 68) {  //uparrow
+				console.log(maxmpath)
+				console.log(maxpath)
+				renderer.setAnimationLoop(animation2);
+				f1()
+			}
+
+
+
+			if (keyPressed == 38) {
+
+				slider.value += 1;
+
+				if (slider.value > 2) {
+
+					slider.value = 2
+
+				}
+
+				console.log(slider.value);
+
+				download = 1
+			}
+
+			if (keyPressed == 40) {
+
+				slider.value -= 1;
+
+				console.log(slider.value);
+
+				clean();
+
+				firl(nelectron, slider.value);
+
+			}
+
+		}
+
+		function waitingKeypress() {
+			return new Promise((resolve) => {
+				document.addEventListener('keydown', onKeyHandler);
+				function onKeyHandler(e) {
+					if (e.keyCode === 38) {
+						document.removeEventListener('keydown', onKeyHandler);
+						resolve();
+					}
+				}
+			});
+		}
+
+
+
+		function gcd(a, b) {
+			return (b) ? gcd(b, a % b) : a;
+		}
+		var decimalToFraction = function (_decimal) {
+			if (_decimal == parseInt(_decimal)) {
+				return {
+					top: parseInt(_decimal),
+					bottom: 1,
+					display: parseInt(_decimal) + '/' + 1
+				};
+			}
+			else {
+				var top = _decimal.toString().includes(".") ? _decimal.toString().replace(/\d+[.]/, '') : 0;
+				var bottom = Math.pow(10, top.toString().replace('-', '').length);
+				if (_decimal >= 1) {
+					top = +top + (Math.floor(_decimal) * bottom);
+				}
+				else if (_decimal <= -1) {
+					top = +top + (Math.ceil(_decimal) * bottom);
+				}
+
+				var x = Math.abs(gcd(top, bottom));
+				return {
+					top: (top / x),
+					bottom: (bottom / x),
+					display: (top / x) + '/' + (bottom / x)
+				};
+			}
+		};
+
+
+
+		function onWindowResized() {
+			if (window.innerWidth < 768) {
+				autoFitCanvas();
+			} else {
+				if (camera) {
+					camera.aspect = 1;
+					camera.updateProjectionMatrix();
+				}
+				renderer.render(scene, camera);
+			}
+		}
+
+		function animation(msTime) {
+
+			cubeCamera.rotation.x += 0.1;
+			//cubeCamera.update( renderer, scene );
+			scene.rotation.x = 0.4 + 0.1 * Math.cos(0.001 * (msTime % 1000000));
+			scene.rotation.y = 0.4 + 0.1 * Math.cos(0.001 * (msTime % 1000000));
+			controls.update();
+			renderer.render(scene, camera);
+			//stats.update();
+		}
+
+		function animation2(msTime) {
+
+			//cubeCamera.rotation.x += 0.1;
+			//cubeCamera.update( renderer, scene );
+			//scene.rotation.x = 0.4 + 0.1 * Math.cos(0.001 * (msTime % 1000000));
+			//scene.rotation.y = 0.4 + 0.1 * Math.cos(0.001 * (msTime % 1000000));
+			controls.update();
+			renderer.render(scene, camera);
+			//stats.update();
+		}
+
+
+		function CG(j1, j2, m1, m2, j3, m3) {
+			return Module.ccall("CG", "number", ["number", "number", "number", "number", "number", "number"], [j1, j2, m1, m2, j3, m3]);
+		}
+
+
+		function DecimalToFraction(j1) {
+			return Module.ccall("DecToFrac", "string", ["number"], [j1]);
+		}
+
+	</script>
+	
+	<script src="cgcCALC.js"></script>
+</body>
+
+</html>
